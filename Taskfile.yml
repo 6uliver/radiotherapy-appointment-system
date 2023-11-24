@@ -6,6 +6,7 @@ tasks:
     deps:
       - installPackages
     cmds:
+      - touch ./backend/src/schema.gql
       - docker compose up --build
     interactive: true
   installBackendPackages:
