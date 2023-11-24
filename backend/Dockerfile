@@ -7,4 +7,6 @@ COPY package.json /app
 
 RUN npm install
 
+COPY . /app
+
 ENTRYPOINT ["/bin/sh", "-c", "npm run start:dev"]

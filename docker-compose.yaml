@@ -3,14 +3,17 @@ services:
     build: frontend-admin
     init: true
     ports:
-      - "5173:5173"
+      - 5173:5173
+    volumes:
+      - ./frontend-admin/src:/app/src
+      - ./frontend-admin/public:/app/public
   backend:
     build: backend
     init: true
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
-      - ./backend:/app
+      - ./backend/src:/app/src
   db:
     image: postgres:16
     environment:

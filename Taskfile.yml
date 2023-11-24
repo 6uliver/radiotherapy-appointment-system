@@ -3,9 +3,26 @@ version: '3'
 tasks:
   start:
     desc: 'Starts the application'
+    deps:
+      - installPackages
     cmds:
       - docker compose up --build
     interactive: true
+  installBackendPackages:
+    desc: 'Installs backend packages'
+    dir: backend
+    cmds:
+      - npm install
+  installFrontendAdminPackages:
+    desc: 'Installs frontend packages'
+    dir: frontend-admin
+    cmds:
+      - yarn install
+  installPackages:
+    desc: 'Installs backend and frontend packages'
+    deps:
+      - installBackendPackages
+      - installFrontendAdminPackages
     silent: true
   addMigration:
     desc: 'Adds a new migration'
@@ -19,4 +36,3 @@ tasks:
     cmds:
       - docker compose down -v
     interactive: true
-    silent: true
