@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  start:
+    desc: 'Starts the application'
+    cmds:
+      - docker compose up --build
+    interactive: true
+    silent: true
+  addMigration:
+    desc: 'Adds a new migration'
+    dir: backend
+    requires:
+      vars: [NAME]
+    cmds:
+      - npm run typeorm migration:create ./migrations/{{.NAME}}
+  clean:
+    desc: 'Cleans the application'
+    cmds:
+      - docker compose down -v
+    interactive: true
+    silent: true
