@@ -20,7 +20,7 @@ erDiagram
     FRACTION {
         start timestamp
         end timestamp
-        successful bool
+        status enum
     }
 
     PATIENT ||--o{ TREATMENT-PLAN : has
