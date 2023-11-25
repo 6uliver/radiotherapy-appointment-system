@@ -25,6 +25,9 @@ export class PatientService {
           searchTerm: `%${searchTerm}%`,
         },
       )
+      .orWhere('"patient"."ssn" LIKE REPLACE(:searchTerm, \'-\', \'\')', {
+        searchTerm: `%${searchTerm}%`,
+      })
       .getMany();
   }
 }

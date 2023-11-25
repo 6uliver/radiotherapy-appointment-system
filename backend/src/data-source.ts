@@ -12,6 +12,7 @@ export const dataSourceOptions: DataSourceOptions = {
   migrationsRun: true,
   synchronize: false,
   entities: ['src/**/*.entity.ts'],
+  // logging: ['query', 'error'],
 };
 
 export default new DataSource(dataSourceOptions);
