@@ -21,7 +21,7 @@ const Button = styled(Link)`
   border: 0;
   border-radius: 0;
   cursor: pointer;
-  margin: 4px 8px 4px 8px;
+  margin: 4px 16px 4px 16px;
   font-size: 18px;
   transition: 1000ms all;
   text-decoration: none;
@@ -36,8 +36,10 @@ export function NavBar() {
   return (
     <Container>
       <InnerContainer>
-        <Button to="/profile">Profile</Button>
         <Button to="/scheduler">Scheduler</Button>
+        <Button to="/treatments">Treatments</Button>
+        <Button to="/machines">Machines</Button>
+        <Button to="/profile">Profile</Button>
         <Button to="/settings">Settings</Button>
       </InnerContainer>
     </Container>

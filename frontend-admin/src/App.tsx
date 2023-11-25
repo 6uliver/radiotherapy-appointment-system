@@ -9,6 +9,8 @@ import { Scheduler } from "./components/Scheduler/Scheduler";
 import { Profile } from "./components/Profile";
 import { Settings } from "./components/Settings";
 import { Home } from "./components/Home";
+import { TreatmentPlans } from "./components/Treatment Plans/TreatmentsPlans";
+import { Machines } from "./components/Machines/Machines";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -35,6 +37,8 @@ export function App() {
             <Route path="/" element={<Navigation />}>
               <Route index element={<Home />} />
               <Route path="scheduler" element={<Scheduler />} />
+              <Route path="treatments" element={<TreatmentPlans />} />
+              <Route path="machines" element={<Machines />} />
               <Route path="profile" element={<Profile />} />
               <Route path="settings" element={<Settings />} />
             </Route>

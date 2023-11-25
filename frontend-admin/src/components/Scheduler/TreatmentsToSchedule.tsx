@@ -14,10 +14,10 @@ const InnerContainer = styled.div`
   display: grid;
 `;
 
-export function Treatments() {
+export function TreatmentsToSchedule() {
   return (
     <Container>
-      <h1>Treatments</h1>
+      <h1>Treatments To Schedule</h1>
       <InnerContainer></InnerContainer>
     </Container>
   );

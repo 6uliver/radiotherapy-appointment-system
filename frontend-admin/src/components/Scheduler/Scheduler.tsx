@@ -1,6 +1,6 @@
 import { Calendar } from "./Calendar";
 import { PageBase } from "../PageBase";
-import { Treatments } from "./Treatments";
+import { TreatmentsToSchedule } from "./TreatmentsToSchedule";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,7 +13,7 @@ export function Scheduler() {
     <PageBase title="Scheduler">
       <Container>
         <Calendar />
-        <Treatments />
+        <TreatmentsToSchedule />
       </Container>
     </PageBase>
   );
