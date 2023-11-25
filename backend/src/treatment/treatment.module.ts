@@ -6,9 +6,10 @@ import { TreatmentPlanResolver } from './treatment-plan.resolver';
 import { Fraction } from './fraction.entity';
 import { FractionResolver } from './fraction.resolver';
 import { PatientResolver } from './patient.resolver';
+import { PatientModule } from 'src/patient/patient.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TreatmentPlan, Fraction])],
+  imports: [TypeOrmModule.forFeature([TreatmentPlan, Fraction]), PatientModule],
   controllers: [],
   providers: [
     TreatmentService,

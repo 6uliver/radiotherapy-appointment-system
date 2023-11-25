@@ -1,14 +1,31 @@
-import { Parent, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { TreatmentService } from './treatment.service';
 import { TreatmentPlan } from './treatment-plan.entity';
 import { Fraction } from './fraction.entity';
+import { PatientService } from 'src/patient/patient.service';
+import { Patient } from 'src/patient/patient.entity';
 
 @Resolver(() => TreatmentPlan)
 export class TreatmentPlanResolver {
-  constructor(private treatmentService: TreatmentService) {}
+  constructor(
+    private treatmentService: TreatmentService,
+    private patientService: PatientService,
+  ) {}
 
   @ResolveField(() => [Fraction])
   async fractions(@Parent() treatmentPlan: TreatmentPlan) {
     return this.treatmentService.getFractionsForTreatmentPlan(treatmentPlan.id);
+  }
+
+  @ResolveField(() => Patient)
+  async patient(@Parent() treatmentPlan: TreatmentPlan) {
+    return this.patientService.getPatient(treatmentPlan.patientId);
+  }
+
+  @Query(() => [TreatmentPlan])
+  async searchTreatmentPlans(
+    @Args('searchTerm', { type: () => String }) searchTerm: string,
+  ) {
+    return this.treatmentService.search(searchTerm);
   }
 }
