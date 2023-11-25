@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "./Cards";
+import { Card } from "./Card";
 
 const Container = styled.div`
   h1 {
