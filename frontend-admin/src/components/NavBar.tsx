@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { OncoDarkGreen, OncoLightGreen } from "../theme";
+import { Link } from "react-router-dom";
 
 const Container = styled.nav`
   background-color: ${OncoLightGreen};
@@ -7,7 +8,14 @@ const Container = styled.nav`
   border-top: 2px black solid;
 `;
 
-const Button = styled.button`
+const InnerContainer = styled.div`
+  margin: 0 auto;
+  display: flex;
+  width: 85%;
+`;
+
+const Button = styled(Link)`
+  display: inline-block;
   color: ${OncoDarkGreen};
   background-color: transparent;
   border: 0;
@@ -16,6 +24,7 @@ const Button = styled.button`
   margin: 4px 8px 4px 8px;
   font-size: 18px;
   transition: 1000ms all;
+  text-decoration: none;
 
   &:hover {
     color: white;
@@ -26,9 +35,11 @@ const Button = styled.button`
 export function NavBar() {
   return (
     <Container>
-      <Button>Profile</Button>
-      <Button>Appointments</Button>
-      <Button>Settings</Button>
+      <InnerContainer>
+        <Button to="/profile">Profile</Button>
+        <Button to="/appointments">Appointments</Button>
+        <Button to="/settings">Settings</Button>
+      </InnerContainer>
     </Container>
   );
 }

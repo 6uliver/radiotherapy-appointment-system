@@ -3,6 +3,8 @@ import logo from "../logo.svg";
 import { OncoDarkGreen } from "../theme";
 
 const Container = styled.div`
+  margin: 0 auto;
+  width: 85%;
   background-color: ${OncoDarkGreen};
 `;
 

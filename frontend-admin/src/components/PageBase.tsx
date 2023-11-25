@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { OncoLightGreen } from "../theme";
+import { OncoWhite } from "../theme";
 import { ReactNode } from "react";
 
 const Container = styled.div`
-  background-color: ${OncoLightGreen};
+  background-color: ${OncoWhite};
   margin: auto;
   justify-content: center;
   width: 85%;
@@ -24,7 +24,7 @@ interface PageBaseProps {
 export function PageBase({ title, children }: PageBaseProps) {
   return (
     <Container>
-      <Title>{title}</Title>
+      {title && <Title>{title}</Title>}
       {children}
     </Container>
   );
