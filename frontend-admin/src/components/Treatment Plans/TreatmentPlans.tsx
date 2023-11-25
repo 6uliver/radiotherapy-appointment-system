@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PageBase } from "../PageBase";
-import { List } from "./List";
-import { Search } from "./SearchBar";
+import { ResultList } from "./ResultList";
+import { Search } from "./Search";
 import { gql } from "../../gql";
 import { useQuery } from "@apollo/client";
 
@@ -27,7 +27,7 @@ export function TreatmentPlans() {
     <PageBase title="Treatment Plans">
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       {searchQuery.data && (
-        <List treatmentPlans={searchQuery.data.searchTreatmentPlans} />
+        <ResultList treatmentPlans={searchQuery.data.searchTreatmentPlans} />
       )}
     </PageBase>
   );
