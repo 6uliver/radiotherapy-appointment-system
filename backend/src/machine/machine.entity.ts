@@ -3,8 +3,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Fraction {
-  constructor(partial: Partial<Fraction>) {
+export class Machine {
+  constructor(partial: Partial<Machine>) {
     Object.assign(this, partial);
   }
 
@@ -12,17 +12,7 @@ export class Fraction {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  treatmentPlanId: string;
-
-  @Column()
-  machineId: string;
-
   @Field()
   @Column()
-  start: Date;
-
-  @Field()
-  @Column()
-  end: Date;
+  name: string;
 }

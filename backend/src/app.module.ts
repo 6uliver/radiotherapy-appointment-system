@@ -7,6 +7,7 @@ import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from './data-source';
 import { PatientModule } from './patient/patient.module';
+import { MachineModule } from './machine/machine.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { PatientModule } from './patient/patient.module';
       autoLoadEntities: true,
     }),
     PatientModule,
+    MachineModule,
   ],
   controllers: [AppController],
   providers: [AppService],
