@@ -20,7 +20,7 @@ export class PatientService {
       .createQueryBuilder('patient')
       .select()
       .where(
-        'CONCAT("patient"."firstName", \' \', "patient"."lastName") LIKE :searchTerm',
+        'LOWER(CONCAT("patient"."firstName", \' \', "patient"."lastName")) LIKE LOWER(:searchTerm)',
         {
           searchTerm: `%${searchTerm}%`,
         },
