@@ -2,10 +2,12 @@ services:
   frontend-admin:
     build: frontend-admin
     init: true
+    depends_on:
+      - backend
     ports:
       - 5173:5173
     volumes:
-      - ./backend/src/schema.gql:/app/src/schema.gql
+      - ./backend/src/schema.gql:/app/schema.gql
       - ./frontend-admin/src:/app/src
       - ./frontend-admin/public:/app/public
   backend:
