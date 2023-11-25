@@ -1,21 +1,21 @@
 import { Seeder } from '@jorgebodega/typeorm-seeding';
-import { User } from 'src/user.entity';
+import { Patient } from 'src/patient/patient.entity';
 import { DataSource } from 'typeorm';
 import { faker } from '@faker-js/faker';
 
-function createRandomUser(): User {
-  return new User({
+function createRandomPatient(): Patient {
+  return new Patient({
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
   });
 }
 
-export default class UserSeeder extends Seeder {
+export default class PatientSeeder extends Seeder {
   async run(dataSource: DataSource) {
-    const users: User[] = faker.helpers.multiple(createRandomUser, {
+    const patients: Patient[] = faker.helpers.multiple(createRandomPatient, {
       count: 5,
     });
-    await dataSource.createEntityManager().save<User>(users);
+    await dataSource.createEntityManager().save<Patient>(patients);
   }
 }

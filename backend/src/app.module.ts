@@ -4,11 +4,9 @@ import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { UserResolver } from './user.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserService } from './user.service';
-import { User } from './user.entity';
 import { dataSourceOptions } from './data-source';
+import { PatientModule } from './patient/patient.module';
 
 @Module({
   imports: [
@@ -22,9 +20,9 @@ import { dataSourceOptions } from './data-source';
       entities: [],
       autoLoadEntities: true,
     }),
-    TypeOrmModule.forFeature([User]),
+    PatientModule,
   ],
   controllers: [AppController],
-  providers: [AppService, UserService, UserResolver],
+  providers: [AppService],
 })
 export class AppModule {}

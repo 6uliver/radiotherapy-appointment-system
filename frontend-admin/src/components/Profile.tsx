@@ -1,4 +1,4 @@
-import { UserList } from "../UserList";
+import { PatientList } from "../PatientList";
 import { PageBase } from "./PageBase";
 import { PatientCard } from "./PatientCard";
 import { TreatmentPlan } from "./TreatmentPlan";
@@ -6,9 +6,9 @@ import { TreatmentPlan } from "./TreatmentPlan";
 export function Profile() {
   return (
     <PageBase title="Profile">
-      <PatientCard/>
-      <TreatmentPlan/>
-      <UserList />
+      <PatientCard />
+      <TreatmentPlan />
+      <PatientList />
     </PageBase>
   );
 }

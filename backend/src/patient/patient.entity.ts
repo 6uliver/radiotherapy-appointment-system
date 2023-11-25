@@ -3,8 +3,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class User {
-  constructor(partial: Partial<User>) {
+export class Patient {
+  constructor(partial: Partial<Patient>) {
     Object.assign(this, partial);
   }
 
