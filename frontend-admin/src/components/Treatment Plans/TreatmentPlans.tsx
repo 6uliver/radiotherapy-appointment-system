@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { PageBase } from "../PageBase";
+import { List } from "./List";
+import { Search } from "./SearchBar";
 
 export function TreatmentPlans() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <PageBase title="Treatment Plans">
-      <h1>Treatment plans page</h1>
+      <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      {searchTerm && <List />}
     </PageBase>
   );
 }
