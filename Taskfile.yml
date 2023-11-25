@@ -33,6 +33,11 @@ tasks:
       vars: [NAME]
     cmds:
       - npm run typeorm migration:create ./migrations/{{.NAME}}
+  seed:
+    desc: 'Seeds the database'
+    dir: backend
+    cmds:
+      - npm run seed
   clean:
     desc: 'Cleans the application'
     cmds:

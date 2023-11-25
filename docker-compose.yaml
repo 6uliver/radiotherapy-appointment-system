@@ -17,6 +17,8 @@ services:
       - 3000:3000
     volumes:
       - ./backend/src:/app/src
+    environment:
+      DB_HOST: "db"
   db:
     image: postgres:16
     environment:

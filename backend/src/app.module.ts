@@ -8,7 +8,7 @@ import { UserResolver } from './user.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserService } from './user.service';
 import { User } from './user.entity';
-import { dataSource } from './data-source';
+import { dataSourceOptions } from './data-source';
 
 @Module({
   imports: [
@@ -17,7 +17,11 @@ import { dataSource } from './data-source';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
     }),
-    TypeOrmModule.forRoot(dataSource),
+    TypeOrmModule.forRoot({
+      ...dataSourceOptions,
+      entities: [],
+      autoLoadEntities: true,
+    }),
     TypeOrmModule.forFeature([User]),
   ],
   controllers: [AppController],
