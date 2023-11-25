@@ -3,6 +3,7 @@ import { Patient } from 'src/patient/patient.entity';
 import { DataSource } from 'typeorm';
 import { faker } from '@faker-js/faker';
 import { TreatmentPlan } from 'src/treatment/treatment-plan.entity';
+import { Region } from 'src/treatment/region.enum';
 
 function createRandomTreatmentPlans(patients: Patient[]) {
   return () =>
@@ -11,6 +12,7 @@ function createRandomTreatmentPlans(patients: Patient[]) {
       patientId: faker.helpers.arrayElement(patients).id,
       fractionCount: faker.number.int({ min: 1, max: 35 }),
       fractionMinutes: faker.number.int({ min: 10, max: 30 }),
+      region: faker.helpers.enumValue(Region),
     });
 }
 

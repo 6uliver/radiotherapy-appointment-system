@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Region } from './region.enum';
 
 @Entity()
 @ObjectType()
@@ -22,4 +23,8 @@ export class TreatmentPlan {
   @Field()
   @Column()
   fractionMinutes: number;
+
+  @Field()
+  @Column()
+  region: Region;
 }
