@@ -2,7 +2,8 @@ projects:
   default:
     schema: "backend/src/schema.gql"
   challau-user-frontend:
-    schema: "frontend-admin/schema.gql"
+    schema:
+      - "frontend-admin/schema.gql"
+      - "frontend-admin/src/**/*.tsx"
     documents:
       - "frontend-admin/src/**/*.tsx"
-
