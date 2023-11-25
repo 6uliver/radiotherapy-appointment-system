@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from './data-source';
 import { PatientModule } from './patient/patient.module';
 import { MachineModule } from './machine/machine.module';
+import { TreatmentModule } from './treatment/treatment.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { MachineModule } from './machine/machine.module';
     }),
     PatientModule,
     MachineModule,
+    TreatmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
