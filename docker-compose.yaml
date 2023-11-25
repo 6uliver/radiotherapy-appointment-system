@@ -7,7 +7,7 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - ./backend/src/schema.gql:/app/schema.gql
+      - ./frontend-admin/schema.gql:/app/schema.gql
       - ./frontend-admin/src:/app/src
       - ./frontend-admin/public:/app/public
   backend:
