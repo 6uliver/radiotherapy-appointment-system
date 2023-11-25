@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
+import { FaCircle } from "react-icons/fa6";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 5em);
+  grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
@@ -38,6 +39,18 @@ const Title = styled.h1`
   margin-bottom: 5px;
 `;
 
+const StatusContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 12px;
+    height: auto;
+    fill: ${({ color }) => color};
+    margin-right: 3px;
+  }
+`;
+
 const Text = styled.p`
   font-size: 14px;
 `;
@@ -52,9 +65,25 @@ const fragment = gql(/* GraphQL */ `
 interface Props {
   machine: FragmentType<typeof fragment>;
 }
+const statuses = ["Working", "Maintenance", "Failure"];
 
 export function Machine({ machine }: Props) {
   const machineFragment = useFragment(fragment, machine);
+  const status = statuses[Math.floor(Math.random() * 3)];
+  let color;
+  switch (status) {
+    case "Working":
+      color = "green";
+      break;
+    case "Maintenance":
+      color = "yellow";
+      break;
+    case "Failure":
+      color = "red";
+      break;
+    default:
+      color = "black";
+  }
 
   return (
     <Container>
@@ -64,7 +93,10 @@ export function Machine({ machine }: Props) {
       </Section>
       <Section>
         <Title>Status</Title>
-        <Text>Available</Text>
+        <StatusContainer color={color}>
+          <FaCircle />
+          <Text>{status}</Text>
+        </StatusContainer>
       </Section>
     </Container>
   );

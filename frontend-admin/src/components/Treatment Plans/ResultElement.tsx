@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
+import { Region } from "../../gql/graphql";
 
 const Container = styled.div`
   display: grid;
@@ -47,6 +48,7 @@ const fragment = gql(/* GraphQL */ `
     id
     fractionCount
     fractionMinutes
+    region
     patient {
       id
       firstName
@@ -56,12 +58,31 @@ const fragment = gql(/* GraphQL */ `
   }
 `);
 
+const regionNames: Record<Region, string> = {
+  ABDOMEN: "Abdomen",
+  BREAST: "Breast",
+  BREASTSPECIAL: "Breat special",
+  CRANE: "Crane",
+  CRANIOSPINAL: "Craniospinal",
+  HEAD: "Head & neck",
+  LUNG: "Lung",
+  LUNGSPECIAL: "Lung special",
+  PELVIS: "Pelvis",
+  WHOLEBRAIN: "Whole brain",
+};
+
+function formatRegion(region: Region) {
+  return regionNames[region];
+}
+
 interface Props {
   treatmentPlan: FragmentType<typeof fragment>;
 }
 
 export function ResultElement({ treatmentPlan }: Props) {
   const treatmentPlanFragment = useFragment(fragment, treatmentPlan);
+
+  const formattedRegion = formatRegion(treatmentPlanFragment.region);
 
   return (
     <Container>
@@ -75,6 +96,10 @@ export function ResultElement({ treatmentPlan }: Props) {
       <Section>
         <Title>SSN Number</Title>
         <Text>{`${treatmentPlanFragment.patient.ssn} `}</Text>
+      </Section>
+      <Section>
+        <Title>Region</Title>
+        <Text>{formattedRegion}</Text>
       </Section>
       <Section>
         <Title>Treatment Plan</Title>
