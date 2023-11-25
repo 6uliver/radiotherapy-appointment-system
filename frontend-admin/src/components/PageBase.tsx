@@ -9,11 +9,11 @@ const Container = styled.div`
   width: 85%;
   align-items: start;
   flex-grow: 1;
+  padding: 20px;
 `;
 
 const Title = styled.p`
   font-size: 2rem;
-  margin: 25px 0 0 5px;
 `;
 
 interface PageBaseProps {

@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import "./reset.css";
+
 import "./index.css";
 
 import { Header } from "./components/Header";
