@@ -1,3 +1,5 @@
+import { registerEnumType } from '@nestjs/graphql';
+
 export enum Region {
   CRANIOSPINAL = 'craniospinal',
   BREAST = 'breast',
@@ -10,3 +12,5 @@ export enum Region {
   LUNGSPECIAL = 'lung-special',
   WHOLEBRAIN = 'whole-brain',
 }
+
+registerEnumType(Region, { name: 'Region' });

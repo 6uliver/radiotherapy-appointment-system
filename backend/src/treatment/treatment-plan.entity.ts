@@ -24,7 +24,7 @@ export class TreatmentPlan {
   @Column()
   fractionMinutes: number;
 
-  @Field()
+  @Field(() => Region)
   @Column()
   region: Region;
 }
