@@ -10,6 +10,8 @@ const Container = styled.div`
   align-items: start;
   flex-grow: 1;
   padding: 20px;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
 `;
 
 const Title = styled.p`

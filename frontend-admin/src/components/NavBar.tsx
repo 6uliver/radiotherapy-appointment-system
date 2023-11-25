@@ -37,7 +37,7 @@ export function NavBar() {
     <Container>
       <InnerContainer>
         <Button to="/profile">Profile</Button>
-        <Button to="/appointments">Appointments</Button>
+        <Button to="/scheduler">Scheduler</Button>
         <Button to="/settings">Settings</Button>
       </InnerContainer>
     </Container>

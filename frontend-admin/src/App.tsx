@@ -5,7 +5,7 @@ import "./index.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
-import { Appointments } from "./components/Appointments";
+import { Scheduler } from "./components/Scheduler";
 import { Profile } from "./components/Profile";
 import { Settings } from "./components/Settings";
 import { Home } from "./components/Home";
@@ -34,7 +34,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Navigation />}>
               <Route index element={<Home />} />
-              <Route path="appointments" element={<Appointments />} />
+              <Route path="scheduler" element={<Scheduler />} />
               <Route path="profile" element={<Profile />} />
               <Route path="settings" element={<Settings />} />
             </Route>
