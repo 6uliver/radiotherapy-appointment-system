@@ -10,7 +10,6 @@ const Container = styled.div`
   justify-content: space-between;
   width: 300px;
   padding: 20px;
-  background-color: grey;
   border-radius: 10px;
   color: ${OncoDarkGreen};
   background-color: ${OncoLightGreen};
@@ -25,14 +24,14 @@ const Icons = styled.div`
 
 const Name = styled.div`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 `;
 
 const Patient = styled.div`
   justify-content: space-around;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 `;
 
 export function PatientCard() {
