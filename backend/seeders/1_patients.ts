@@ -8,6 +8,7 @@ function createRandomPatient(): Patient {
     id: faker.string.uuid(),
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
+    ssn: faker.string.numeric(9),
   });
 }
 

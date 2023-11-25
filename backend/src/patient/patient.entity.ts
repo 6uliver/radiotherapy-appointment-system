@@ -19,4 +19,8 @@ export class Patient {
   @Field()
   @Column()
   lastName: string;
+
+  @Field()
+  @Column()
+  ssn: string;
 }
