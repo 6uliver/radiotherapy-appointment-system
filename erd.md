@@ -36,4 +36,12 @@ erDiagram
         kVImage bool
         regions enum[]
     }
+
+    DOWNTIME {
+        start timestamp
+        end timestamp
+        reason enum
+    }
+
+    DOWNTIME }o--|| MACHINE: has
 ```
