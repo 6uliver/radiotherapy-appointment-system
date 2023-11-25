@@ -5,7 +5,7 @@ import "./index.css";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
-import { Scheduler } from "./components/Scheduler";
+import { Scheduler } from "./components/Scheduler/Scheduler";
 import { Profile } from "./components/Profile";
 import { Settings } from "./components/Settings";
 import { Home } from "./components/Home";
