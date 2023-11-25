@@ -39,7 +39,7 @@ const Title = styled.h1`
 `;
 
 const Text = styled.p`
-  font-size: 12px;
+  font-size: 14px;
 `;
 
 const fragment = gql(/* GraphQL */ `
@@ -59,7 +59,8 @@ export function Machine({ machine }: Props) {
   return (
     <Container>
       <Section>
-        <Title>{machineFragment.name}</Title>
+        <Title>Name</Title>
+        <Text>{machineFragment.name}</Text>
       </Section>
       <Section>
         <Title>Status</Title>
