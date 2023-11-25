@@ -16,6 +16,7 @@ services:
     ports:
       - 3000:3000
     volumes:
+      - ./backend/migrations:/app/migrations
       - ./backend/src:/app/src
     environment:
       DB_HOST: "db"
