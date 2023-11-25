@@ -21,8 +21,6 @@ export function TreatmentPlans() {
     skip: !searchTerm,
   });
 
-  console.log(searchQuery.data);
-
   return (
     <PageBase title="Treatment Plans">
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

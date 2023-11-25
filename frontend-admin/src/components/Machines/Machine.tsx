@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import { OncoLightGreen, OncoWhite } from "../../theme";
+import { FragmentType, gql, useFragment } from "../../gql";
 
 const Container = styled.div`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 5em);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+
+  align-items: start;
   min-height: 75px;
   margin: 5px;
   padding: 15px;
@@ -24,15 +30,41 @@ const Container = styled.div`
   }
 `;
 
-const Name = styled.h1``;
+const Section = styled.div`
+  margin-right: 15px;
+`;
 
-const Status = styled.h1``;
+const Title = styled.h1`
+  margin-bottom: 5px;
+`;
 
-export function Machine() {
+const Text = styled.p`
+  font-size: 12px;
+`;
+
+const fragment = gql(/* GraphQL */ `
+  fragment MachineforMachines on Machine {
+    id
+    name
+  }
+`);
+
+interface Props {
+  machine: FragmentType<typeof fragment>;
+}
+
+export function Machine({ machine }: Props) {
+  const machineFragment = useFragment(fragment, machine);
+
   return (
     <Container>
-      <Name>TB1</Name>
-      <Status>Occupied</Status>
+      <Section>
+        <Title>{machineFragment.name}</Title>
+      </Section>
+      <Section>
+        <Title>Status</Title>
+        <Text>Available</Text>
+      </Section>
     </Container>
   );
 }
