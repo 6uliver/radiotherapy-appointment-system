@@ -5,13 +5,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  padding: 5px 0 5px;
-  height: 4vh;
+  padding: 10px 0;
   flex-grow: 1;
   flex-basis: 100%;
-  p {
-    font-size: 12px;
-  }
+  font-size: 12px;
 `;
 
 const Day = styled.p`
@@ -22,11 +19,11 @@ const Date = styled.p`
   margin: 0;
 `;
 
-interface ColumnLegendProps {
+interface Props {
   idx: number;
 }
 
-export function ColumnLegend({ idx }: ColumnLegendProps) {
+export function DayLegend({ idx }: Props) {
   let day: string;
   let date: string;
 

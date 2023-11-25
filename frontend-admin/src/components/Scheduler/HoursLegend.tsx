@@ -1,19 +1,20 @@
 import styled from "styled-components";
 
-const Container = styled.div`
-  height: 31px;
-  &:last-child {
-    height: 30px;
-  }
+const Cell = styled.div`
   width: 45px;
   display: flex;
   justify-content: center;
   align-items: start;
   padding: 0 5px 0 5px;
-  p {
-    font-size: 12px;
-    margin: 0;
+  height: 31px;
+
+  &:last-child {
+    height: 30px;
   }
+`;
+
+const Time = styled.span`
+  font-size: 12px;
 `;
 
 function getTime(index: number, increment: number) {
@@ -24,20 +25,18 @@ function getTime(index: number, increment: number) {
   return `${hour.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
 }
 
-interface RowLegendProps {
-  rows: number[];
-}
+const timeslots = new Array(96).fill(0);
 
-export function RowLegend({ rows }: RowLegendProps) {
+export function HoursLegend() {
   return (
-    <>
-      {rows.map((_i, idx) => {
+    <div>
+      {timeslots.map((_i, idx) => {
         return (
-          <Container key={idx}>
-            {(idx + 2) % 2 === 0 && <p>{`${getTime(idx, 15)}`}</p>}
-          </Container>
+          <Cell key={idx}>
+            {idx % 2 === 0 && <Time>{`${getTime(idx, 15)}`}</Time>}
+          </Cell>
         );
       })}
-    </>
+    </div>
   );
 }
