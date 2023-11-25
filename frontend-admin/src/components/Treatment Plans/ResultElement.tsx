@@ -3,8 +3,13 @@ import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 
 const Container = styled.div`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 15em);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+
+  align-items: start;
   min-height: 75px;
   margin: 5px;
   padding: 15px;
@@ -25,9 +30,17 @@ const Container = styled.div`
   }
 `;
 
-const Name = styled.h1``;
+const Section = styled.div`
+  margin-right: 15px;
+`;
 
-const SSNNumber = styled.h1``;
+const Title = styled.h1`
+  margin-bottom: 5px;
+`;
+
+const Text = styled.p`
+  font-size: 14px;
+`;
 
 const fragment = gql(/* GraphQL */ `
   fragment TreatmentPlanForResultElement on TreatmentPlan {
@@ -38,6 +51,7 @@ const fragment = gql(/* GraphQL */ `
       id
       firstName
       lastName
+      ssn
     }
   }
 `);
@@ -51,12 +65,24 @@ export function ResultElement({ treatmentPlan }: Props) {
 
   return (
     <Container>
-      <Name>
-        {treatmentPlanFragment.patient.firstName}{" "}
-        {treatmentPlanFragment.patient.lastName}
-      </Name>
-      <SSNNumber>123123123</SSNNumber>
-      {treatmentPlanFragment.id} - {treatmentPlanFragment.fractionMinutes} -{" "}
+      <Section>
+        <Title>Name</Title>
+        <Text>
+          {treatmentPlanFragment.patient.firstName}{" "}
+          {treatmentPlanFragment.patient.lastName}
+        </Text>
+      </Section>
+      <Section>
+        <Title>SSN Number</Title>
+        <Text>{`${treatmentPlanFragment.patient.ssn} `}</Text>
+      </Section>
+      <Section>
+        <Title>Treatment Plan</Title>
+        <Text>
+          {treatmentPlanFragment.fractionCount} x{" "}
+          {treatmentPlanFragment.fractionMinutes} minutes
+        </Text>
+      </Section>
     </Container>
   );
 }
