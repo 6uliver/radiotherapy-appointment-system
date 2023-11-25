@@ -37,7 +37,7 @@ export function NavBar() {
     <Container>
       <InnerContainer>
         <Button to="/scheduler">Scheduler</Button>
-        <Button to="/treatments">Treatments</Button>
+        <Button to="/treatment-plans">Treament Plans</Button>
         <Button to="/machines">Machines</Button>
         <Button to="/profile">Profile</Button>
         <Button to="/settings">Settings</Button>
