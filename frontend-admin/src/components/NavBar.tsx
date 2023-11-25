@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Container = styled.nav`
   background-color: ${OncoLightGreen};
-  border-bottom: 2px black solid;
-  border-top: 2px black solid;
+  border-bottom: 1px black solid;
+  border-top: 1px black solid;
 `;
 
 const InnerContainer = styled.div`
@@ -21,13 +21,18 @@ const Button = styled(Link)`
   border: 0;
   border-radius: 0;
   cursor: pointer;
-  margin: 4px 16px 4px 16px;
+  margin: 8px 16px 8px 16px;
   font-size: 18px;
   transition: 1000ms all;
   text-decoration: none;
 
   &:hover {
     color: white;
+    transition: 300ms all;
+  }
+
+  &:active {
+    color: #b9b9b9;
     transition: 300ms all;
   }
 `;
