@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../../public/logo.svg";
+import logo from "../logo.svg";
 import { OncoDarkGreen } from "../theme";
 
 const Container = styled.div`
