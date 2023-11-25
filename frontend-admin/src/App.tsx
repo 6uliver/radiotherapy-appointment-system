@@ -19,6 +19,11 @@ const PageWrapper = styled.div`
 const client = new ApolloClient({
   uri: "/graphql",
   cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      pollInterval: 10000,
+    },
+  },
 });
 
 export function App() {
