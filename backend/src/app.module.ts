@@ -14,6 +14,9 @@ import { PatientModule } from './patient/patient.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
+      buildSchemaOptions: {
+        dateScalarMode: 'timestamp',
+      },
     }),
     TypeOrmModule.forRoot({
       ...dataSourceOptions,
