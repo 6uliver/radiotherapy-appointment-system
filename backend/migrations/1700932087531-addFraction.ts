@@ -12,6 +12,7 @@ export class AddFraction1700932087531 implements MigrationInterface {
             referencedTableName: 'treatment_plan',
             referencedColumnNames: ['id'],
             onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
           },
         ],
         columns: [

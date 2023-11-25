@@ -11,6 +11,8 @@ export class AddTreatmentPlans1700929779699 implements MigrationInterface {
             columnNames: ['patientId'],
             referencedTableName: 'patient',
             referencedColumnNames: ['id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
           },
         ],
         columns: [

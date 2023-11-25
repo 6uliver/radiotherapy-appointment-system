@@ -20,7 +20,7 @@ export default class TreatmentPlanSeeder extends Seeder {
     const treatmentPlans: TreatmentPlan[] = faker.helpers.multiple(
       createRandomTreatmentPlans(patients),
       {
-        count: 15,
+        count: 150,
       },
     );
     await dataSource.createEntityManager().save<TreatmentPlan>(treatmentPlans);

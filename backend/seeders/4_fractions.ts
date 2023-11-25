@@ -34,7 +34,7 @@ export default class FractionsSeeder extends Seeder {
     const fractions: Fraction[] = faker.helpers.multiple(
       createRandomFractions(treatmentPlans, machines),
       {
-        count: 150,
+        count: 600,
       },
     );
     await dataSource.createEntityManager().save<Fraction>(fractions);

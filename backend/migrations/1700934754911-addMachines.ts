@@ -43,6 +43,7 @@ export class AddMachines1700934754911 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'machine',
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }

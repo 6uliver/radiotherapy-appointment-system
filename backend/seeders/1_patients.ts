@@ -15,7 +15,7 @@ function createRandomPatient(): Patient {
 export default class PatientSeeder extends Seeder {
   async run(dataSource: DataSource) {
     const patients: Patient[] = faker.helpers.multiple(createRandomPatient, {
-      count: 5,
+      count: 100,
     });
     await dataSource.createEntityManager().save<Patient>(patients);
   }
