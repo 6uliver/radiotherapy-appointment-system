@@ -4,7 +4,7 @@ import { OncoDarkGreen } from "../theme";
 
 const Container = styled.div`
   margin: 0 auto;
-  width: 85%;
+  width: 1560px;
   background-color: ${OncoDarkGreen};
 `;
 

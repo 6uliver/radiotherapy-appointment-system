@@ -6,7 +6,7 @@ const Container = styled.div`
   background-color: ${OncoWhite};
   margin: auto;
   justify-content: center;
-  width: 85%;
+  width: 1560px;
   align-items: start;
   flex-grow: 1;
   padding: 20px;

@@ -10,7 +10,7 @@ const InnerContainer = styled.div`
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
-  width: 85%;
+  width: 1560px;
 `;
 
 const Button = styled(Link)`

@@ -12,13 +12,13 @@ export default class FractionsSeeder extends Seeder {
       .find(TreatmentPlan);
     const selectedTreatmentPlans = faker.helpers.arrayElements(
       treatmentPlans,
-      100,
+      500,
     );
 
     let j = 0;
     const machines = await dataSource.createEntityManager().find(Machine);
-    const machineId = machines[0].id;
     for (const selectedTreatmentPlan of selectedTreatmentPlans) {
+      const machineId = faker.helpers.arrayElement(machines).id;
       const fractions: Fraction[] = [];
       const count = faker.number.int({
         min: selectedTreatmentPlan.fractionCount / 2,
