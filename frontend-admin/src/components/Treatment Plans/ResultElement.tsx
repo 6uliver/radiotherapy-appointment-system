@@ -50,6 +50,7 @@ const fragment = gql(/* GraphQL */ `
   fragment TreatmentPlanForResultElement on TreatmentPlan {
     id
     fractionCount
+    finishedFractionCount
     fractionMinutes
     region
     constraints {
@@ -76,8 +77,15 @@ interface Props {
 export function ResultElement({ treatmentPlan }: Props) {
   const navigate = useNavigate();
   const treatmentPlanFragment = useFragment(fragment, treatmentPlan);
-  const { id, region, patient, fractionCount, fractionMinutes, constraints } =
-    treatmentPlanFragment;
+  const {
+    id,
+    region,
+    patient,
+    fractionCount,
+    finishedFractionCount,
+    fractionMinutes,
+    constraints,
+  } = treatmentPlanFragment;
   const { dateOfBirth, firstName, lastName, ssn } = patient;
 
   return (
@@ -106,7 +114,9 @@ export function ResultElement({ treatmentPlan }: Props) {
       </Section>
       <Section>
         <Title>Treatment Fractions</Title>
-        <Text>{fractionCount}</Text>
+        <Text>
+          {finishedFractionCount}/{fractionCount}
+        </Text>
       </Section>
       <Section>
         <Title>Approx Session Time</Title>

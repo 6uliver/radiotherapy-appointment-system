@@ -14,11 +14,11 @@ const Container = styled.div`
   }
 
   min-height: 75px;
-  margin-bottom: 3px;
+  margin-bottom: 10px;
   padding: 15px;
   background-color: ${OncoLightGreen};
   border: solid 1px grey;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
   transition: 1000ms all;
 

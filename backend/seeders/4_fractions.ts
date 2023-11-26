@@ -20,8 +20,11 @@ export default class FractionsSeeder extends Seeder {
     const machineId = machines[0].id;
     for (const selectedTreatmentPlan of selectedTreatmentPlans) {
       const fractions: Fraction[] = [];
-
-      for (let i = 0; i < selectedTreatmentPlan.fractionCount; i++) {
+      const count = faker.number.int({
+        min: selectedTreatmentPlan.fractionCount / 2,
+        max: selectedTreatmentPlan.fractionCount,
+      });
+      for (let i = 0; i < count; i++) {
         const start = new Date(
           Date.now() - (14 - i) * 24 * 60 * 60 * 1000 + j * 15 * 60 * 1000,
         );

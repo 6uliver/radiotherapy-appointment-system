@@ -5,10 +5,7 @@ import { Machine } from "./Machine";
 import { useQuery } from "@apollo/client";
 import { gql } from "../../gql";
 
-const Container = styled.div`
-  border: 1px solid black;
-  background-color: white;
-`;
+const Container = styled.div``;
 
 const ResultCount = styled.h2`
   margin: 15px 0 5px 0;

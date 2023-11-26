@@ -13,17 +13,19 @@ import { AddFraction } from "./AddFraction";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 `;
 
 const Details = styled.div`
   width: 100%;
+  flex-basis: 25%;
   display: flex;
   flex-direction: column;
   align-items: start;
 `;
 
 const Wrapper = styled.div`
-  width: 95%;
+  width: 100%;
 `;
 
 const Appointments = styled.div`
@@ -39,22 +41,25 @@ const SectionHeader = styled.h1`
 
 const Section = styled.div`
   width: 100%;
-  border: 2px solid ${OncoDarkGreen};
-  padding: 3px;
+  border: 1px solid ${OncoDarkGreen};
+  border-radius: 5px;
+  padding: 20px;
   height: 65vh;
 
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
 `;
 
 const Parameter = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 100px 1fr;
   margin-bottom: 15px;
 `;
 
 const Title = styled.div`
   font-weight: bold;
+  margin-right: 15px;
 `;
 
 const Value = styled.div``;
@@ -62,8 +67,11 @@ const Value = styled.div``;
 const Comments = styled.textarea`
   height: 100%;
   padding: 0 0 0 0;
-  margin-top: 5px;
+  margin-top: 15px;
+  padding: 20px;
+  font-size: 20px;
   resize: none;
+  outline: none;
 `;
 
 const treatmentPlan = gql(`

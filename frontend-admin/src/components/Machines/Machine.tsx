@@ -14,17 +14,17 @@ const Container = styled.div`
 
   align-items: start;
   min-height: 75px;
-  margin: 5px;
+  margin: 10px 0;
   padding: 15px;
-  background-color: ${OncoLightGreen};
+  background-color: #fff;
   border: solid 1px grey;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
   transition: 1000ms all;
 
   &:hover {
     transition: 300ms all;
-    background-color: ${OncoWhite};
+    background-color: ${OncoLightGreen};
   }
 
   &:active {
@@ -87,7 +87,7 @@ export function Machine({ machine }: Props) {
       color = "green";
       break;
     case "Maintenance":
-      color = "yellow";
+      color = "orange";
       break;
     case "Failure":
       color = "red";
