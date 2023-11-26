@@ -1,6 +1,7 @@
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -51,5 +52,10 @@ export class TreatmentPlanResolver {
   @Query(() => TreatmentPlan)
   async treatmentPlanById(@Args('id', { type: () => ID }) id: string) {
     return this.treatmentService.getTreatmentPlan(id);
+  }
+
+  @Mutation(() => Boolean)
+  async notifyPatient(@Args({ name: 'id', type: () => ID }) id: string) {
+    return this.treatmentService.notifyPatient(id);
   }
 }

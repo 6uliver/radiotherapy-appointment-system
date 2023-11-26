@@ -21,6 +21,11 @@ services:
       - ./backend/src:/app/src
     environment:
       DB_HOST: "db"
+      TWILIO_ACCOUNT_SID:
+      TWILIO_AUTH_TOKEN:
+      TWILIO_PHONE_NUMBER:
+      SENDGRID_API_KEY:
+      SENDGRID_FROM_EMAIL:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
       interval: 5s

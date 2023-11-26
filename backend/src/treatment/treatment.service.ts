@@ -3,6 +3,8 @@ import { In, Repository } from 'typeorm';
 import { TreatmentPlan } from './treatment-plan.entity';
 import { Fraction } from './fraction.entity';
 import { PatientService } from 'src/patient/patient.service';
+import { NotFoundException } from '@nestjs/common';
+import { NotificationService } from './notification.service';
 
 export class TreatmentService {
   constructor(
@@ -11,6 +13,7 @@ export class TreatmentService {
     @InjectRepository(Fraction)
     private fractionRepository: Repository<Fraction>,
     private patientService: PatientService,
+    private notificationService: NotificationService,
   ) {}
 
   async getTreatmentPlans(patientId: string) {
@@ -31,5 +34,24 @@ export class TreatmentService {
 
   async getTreatmentPlan(id: string) {
     return this.treatmentPlanRepository.findOneBy({ id });
+  }
+
+  async notifyPatient(id: string) {
+    const treatmentPlan = await this.treatmentPlanRepository.findOneBy({ id });
+    if (!treatmentPlan) {
+      throw new NotFoundException('Treatment plan not found');
+    }
+
+    const patient = await this.patientService.getPatient(
+      treatmentPlan.patientId,
+    );
+
+    this.notificationService.sendNotification(
+      patient.email,
+      patient.phone,
+      treatmentPlan.id,
+    );
+
+    return true;
   }
 }
