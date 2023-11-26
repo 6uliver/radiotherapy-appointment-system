@@ -14,6 +14,10 @@ export class Patient {
 
   @Field()
   @Column()
+  dateOfBirth: Date;
+
+  @Field()
+  @Column()
   firstName: string;
 
   @Field()
