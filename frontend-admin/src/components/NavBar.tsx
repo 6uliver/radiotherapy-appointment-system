@@ -43,7 +43,6 @@ export function NavBar() {
         <Button to="/scheduler">Scheduler</Button>
         <Button to="/treatment-plans">Treament Plans</Button>
         <Button to="/machines">Machines</Button>
-        <Button to="/settings">Settings</Button>
       </InnerContainer>
     </Container>
   );

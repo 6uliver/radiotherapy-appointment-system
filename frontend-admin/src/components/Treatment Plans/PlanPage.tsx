@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import { formatRegion, formatSSN, getTpn } from "../../utilities/functions";
 import { Fraction } from "./Fraction";
 import { Constraints } from "./Constraints";
+import { AddFraction } from "./AddFraction";
 
 const Container = styled.div`
   display: flex;
@@ -15,15 +16,21 @@ const Container = styled.div`
 `;
 
 const Details = styled.div`
-  width: 40%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: start;
+`;
+
+const Wrapper = styled.div`
+  width: 95%;
 `;
 
 const Appointments = styled.div`
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: end;
 `;
 
 const SectionHeader = styled.h1`
@@ -31,7 +38,7 @@ const SectionHeader = styled.h1`
 `;
 
 const Section = styled.div`
-  width: 90%;
+  width: 100%;
   border: 2px solid ${OncoDarkGreen};
   padding: 3px;
   height: 65vh;
@@ -110,57 +117,62 @@ export function PlanPage() {
   } = treatmentPlanQuery.data.treatmentPlanById;
   const { firstName, lastName, dateOfBirth, ssn, email, phone } = patient;
   const fullName = `${firstName} ${lastName}`;
-  const title = `${getTpn(uid)} : ${fullName}`;
+  const title = `${fullName} - ${getTpn(uid)} `;
 
   return (
     <PageBase title={title}>
       <Container>
         <Details>
-          <SectionHeader>Details</SectionHeader>
-          <Section>
-            <Parameter>
-              <Title>Name</Title>
-              <Value>{fullName}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Date of birth</Title>
-              <Value>{format(dateOfBirth, "PP")}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>TPN</Title>
-              <Value>{getTpn(uid)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>SSN</Title>
-              <Value>{formatSSN(ssn)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Email</Title>
-              <Value>{email}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Phone</Title>
-              <Value>{phone}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Region</Title>
-              <Value>{formatRegion(region)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Constraints</Title>
-              <Constraints constraints={constraints} />
-            </Parameter>
-            <Title>Comments</Title>
-            <Comments />
-          </Section>
+          <Wrapper>
+            <SectionHeader>Details</SectionHeader>
+            <Section>
+              <Parameter>
+                <Title>Name</Title>
+                <Value>{fullName}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>TPN</Title>
+                <Value>{getTpn(uid)}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Date of birth</Title>
+                <Value>{format(dateOfBirth, "PP")}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>SSN</Title>
+                <Value>{formatSSN(ssn)}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Email</Title>
+                <Value>{email}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Phone</Title>
+                <Value>{phone}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Region</Title>
+                <Value>{formatRegion(region)}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Constraints</Title>
+                <Constraints constraints={constraints} />
+              </Parameter>
+              <Title>Comments</Title>
+              <Comments />
+            </Section>
+          </Wrapper>
         </Details>
         <Appointments>
-          <SectionHeader>{`Allocated appointments ${fractions.length}/${fractionCount}`}</SectionHeader>
-          <Section>
-            {fractions.map((fraction) => (
-              <Fraction fraction={fraction} key={fraction.id} />
-            ))}
-          </Section>
+          <Wrapper>
+            <SectionHeader>{`Allocated appointments ${fractions.length}/${fractionCount}`}</SectionHeader>
+            <Section>
+              {fractions.map((fraction) => (
+                <Fraction fraction={fraction} key={fraction.id} />
+              ))}
+              {fractionCount / fractions.length > 1 && <AddFraction />}
+            </Section>
+          </Wrapper>
         </Appointments>
       </Container>
     </PageBase>

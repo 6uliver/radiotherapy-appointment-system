@@ -5,6 +5,7 @@ import { gql } from "../../gql";
 import { useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import { OncoDarkGreen } from "../../theme";
+import { AddFraction } from "../Treatment Plans/AddFraction";
 
 const Container = styled.div`
   display: flex;
@@ -12,15 +13,21 @@ const Container = styled.div`
 `;
 
 const Details = styled.div`
-  width: 40%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: start;
+`;
+
+const Wrapper = styled.div`
+  width: 95%;
 `;
 
 const Appointments = styled.div`
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: end;
 `;
 
 const SectionHeader = styled.h1`
@@ -28,7 +35,7 @@ const SectionHeader = styled.h1`
 `;
 
 const Section = styled.div`
-  width: 90%;
+  width: 100%;
   border: 2px solid ${OncoDarkGreen};
   padding: 3px;
   height: 65vh;
@@ -81,27 +88,34 @@ export function MachinePage() {
     <PageBase title={machineQuery.data.machineById.name}>
       <Container>
         <Details>
-          <SectionHeader>Details</SectionHeader>
-          <Section>
-            <Parameter>
-              <Title>Name</Title>
-              <Value>{machineQuery.data.machineById.name}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Last maintenance</Title>
-              <Value>{format(1692212112222, "PP")}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Upcoming maintenance</Title>
-              <Value>{format(1730812112222, "PP")}</Value>
-            </Parameter>
-            <Title>Comments</Title>
-            <Comments />
-          </Section>
+          <Wrapper>
+            <SectionHeader>Details</SectionHeader>
+            <Section>
+              <Parameter>
+                <Title>Name</Title>
+                <Value>{machineQuery.data.machineById.name}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Last maintenance</Title>
+                <Value>{format(1692212112222, "PP")}</Value>
+              </Parameter>
+              <Parameter>
+                <Title>Upcoming maintenance</Title>
+                <Value>{format(1730812112222, "PP")}</Value>
+              </Parameter>
+              <Title>Comments</Title>
+              <Comments />
+            </Section>
+          </Wrapper>
         </Details>
+
         <Appointments>
-          <SectionHeader>{`Allocated appointments`}</SectionHeader>
-          <Section></Section>
+          <Wrapper>
+            <SectionHeader>{`Allocated appointments`}</SectionHeader>
+            <Section>
+              <AddFraction />
+            </Section>
+          </Wrapper>
         </Appointments>
       </Container>
     </PageBase>

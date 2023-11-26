@@ -3,10 +3,11 @@ import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 import { FaCircle } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
@@ -95,6 +96,9 @@ export function Machine({ machine }: Props) {
       color = "black";
   }
 
+  const upcomingDate = Math.round(Math.random() * 46882223892) + 1774688223892;
+  const lastDate = Math.round(Math.random() * 46882223892) + 1654688223892;
+
   return (
     <Container onClick={() => navigate(`/machines/${id}`)}>
       <Section>
@@ -107,6 +111,14 @@ export function Machine({ machine }: Props) {
           <FaCircle />
           <Text>{status}</Text>
         </StatusContainer>
+      </Section>
+      <Section>
+        <Title>Upcoming maintenance</Title>
+        <Text>{format(upcomingDate, "PP")}</Text>
+      </Section>
+      <Section>
+        <Title>Last maintenance</Title>
+        <Text>{format(lastDate, "PP")}</Text>
       </Section>
     </Container>
   );

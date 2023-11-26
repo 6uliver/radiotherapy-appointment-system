@@ -6,8 +6,6 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import { Scheduler } from "./components/Scheduler/Scheduler";
-import { Profile } from "./components/Profile";
-import { Settings } from "./components/Settings";
 import { Home } from "./components/Home";
 import { TreatmentPlans } from "./components/Treatment Plans/TreatmentPlans";
 import { Machines } from "./components/Machines/Machines";
@@ -41,8 +39,6 @@ export function App() {
               <Route path="scheduler" element={<Scheduler />} />
               <Route path="treatment-plans" element={<TreatmentPlans />} />
               <Route path="machines" element={<Machines />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="settings" element={<Settings />} />
               <Route path="treatment-plans/:id" element={<PlanPage />} />
               <Route path="machines/:id" element={<MachinePage />} />
             </Route>
