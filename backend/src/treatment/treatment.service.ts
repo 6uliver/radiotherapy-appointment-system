@@ -1,5 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { In, LessThan, MoreThan, Repository } from 'typeorm';
 import { TreatmentPlan } from './treatment-plan.entity';
 import { Fraction } from './fraction.entity';
 import { PatientService } from 'src/patient/patient.service';
@@ -22,6 +22,14 @@ export class TreatmentService {
 
   async getFractionsForTreatmentPlan(id: string) {
     return this.fractionRepository.findBy({ treatmentPlanId: id });
+  }
+
+  async getFractionsForMachineByDate(id: string, start: Date, end: Date) {
+    return this.fractionRepository.findBy({
+      machineId: id,
+      start: MoreThan(start),
+      end: LessThan(end),
+    });
   }
 
   async search(searchTerm: string) {

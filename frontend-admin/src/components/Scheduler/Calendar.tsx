@@ -46,7 +46,11 @@ const HeaderPlaceholder = styled.div`
 
 const days = new Array(5).fill(0);
 
-export function Calendar() {
+interface Props {
+  start: number;
+}
+
+export function Calendar({ start }: Props) {
   return (
     <Container>
       <Title>Calendar</Title>
@@ -61,7 +65,7 @@ export function Calendar() {
         <ScrollWrapper>
           <HoursLegend />
           {days.map((_i, idx) => (
-            <Day key={idx} />
+            <Day key={idx} start={start + idx * 24 * 60 * 60 * 1000} />
           ))}
         </ScrollWrapper>
       </Table>

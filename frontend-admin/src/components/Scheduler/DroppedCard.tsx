@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const Container = styled.div`
+  padding: 5px;
+`;
+
 const Wrapper = styled.div`
   background-color: rgb(191, 191, 191);
   border-radius: 5px;
@@ -13,5 +17,9 @@ interface Props {
 }
 
 export function DroppedCard({ patient }: Props) {
-  return <Wrapper>{patient.id}</Wrapper>;
+  return (
+    <Container>
+      <Wrapper>{patient.id}</Wrapper>
+    </Container>
+  );
 }

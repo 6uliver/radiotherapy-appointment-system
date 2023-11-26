@@ -13,12 +13,22 @@ const Row = styled.div`
   }
 `;
 
-export function Cell() {
+interface Props {
+  start: number;
+}
+
+export function Cell({ start }: Props) {
   return (
     <Row>
-      <TimeSlot />
-      <TimeSlot />
-      <TimeSlot />
+      <TimeSlot start={start} end={start + 15 * 60 * 1000} />
+      <TimeSlot
+        start={start + 15 * 60 * 1000}
+        end={start + 2 * 15 * 60 * 1000}
+      />
+      <TimeSlot
+        start={start + 2 * 15 * 60 * 1000}
+        end={start + 3 * 15 * 60 * 1000}
+      />
     </Row>
   );
 }

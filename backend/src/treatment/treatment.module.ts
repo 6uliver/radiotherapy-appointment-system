@@ -9,6 +9,7 @@ import { PatientResolver } from './patient.resolver';
 import { PatientModule } from 'src/patient/patient.module';
 import { NotificationService } from './notification.service';
 import { TwilioModule } from 'nestjs-twilio';
+import { MachineResolver } from './machine.resolver';
 
 const hasTwillioConfig = !!process.env.TWILIO_ACCOUNT_SID;
 const twilliModule = hasTwillioConfig
@@ -33,6 +34,7 @@ const twilliModule = hasTwillioConfig
     TreatmentPlanResolver,
     PatientResolver,
     FractionResolver,
+    MachineResolver,
   ],
   exports: [TreatmentService],
 })

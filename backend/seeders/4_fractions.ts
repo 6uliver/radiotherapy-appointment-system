@@ -10,7 +10,7 @@ function createRandomFractions(
   machines: Machine[],
 ) {
   return () => {
-    const start = faker.date.recent();
+    const start = faker.date.recent({ days: 14 });
     const treatmentPlan = faker.helpers.arrayElement(treatmentPlans);
     const end = new Date(
       start.getTime() + treatmentPlan.fractionMinutes * 60 * 1000,

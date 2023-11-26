@@ -11,11 +11,15 @@ const Column = styled.div`
 
 const timeslots = new Array(96).fill(0);
 
-export function Day() {
+interface Props {
+  start: number;
+}
+
+export function Day({ start }: Props) {
   return (
     <Column>
       {timeslots.map((_i, idx) => (
-        <Cell key={idx} />
+        <Cell key={idx} start={start + idx * 30 * 60 * 1000} />
       ))}
     </Column>
   );
