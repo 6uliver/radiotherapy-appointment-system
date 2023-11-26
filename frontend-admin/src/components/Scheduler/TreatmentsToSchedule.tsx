@@ -31,13 +31,12 @@ export function TreatmentsToSchedule() {
 
   useDndMonitor({
     onDragStart(event) {
-      console.log("onDragStart", event.active.data.current);
+      setCurrent(event.active.data.current as { id: string });
+    },
+    onDragStart(event) {
       setCurrent(event.active.data.current as { id: string });
     },
     onDragMove(event) {
-      if (event.over !== null) {
-        console.log("event.over");
-      }
       setOver(event.over !== null);
     },
   });
