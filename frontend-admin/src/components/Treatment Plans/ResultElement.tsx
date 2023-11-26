@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { OncoLightGreen, OncoWhite } from "../../theme";
+import { OncoDarkGreen, OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 import { format } from "date-fns";
 import { Constraints } from "./Constraints";
@@ -15,17 +15,17 @@ const Container = styled.div`
 
   align-items: start;
   min-height: 75px;
-  margin: 5px;
+  margin: 15px 0;
   padding: 15px;
-  background-color: ${OncoLightGreen};
+  background-color: #fff;
   border: solid 1px grey;
-  border-radius: 20px;
+  border-radius: 5px;
   cursor: pointer;
   transition: 1000ms all;
 
   &:hover {
     transition: 300ms all;
-    background-color: ${OncoWhite};
+    background-color: ${OncoLightGreen};
   }
 
   &:active {

@@ -14,7 +14,8 @@ const Container = styled.div`
 
 const Title = styled.p`
   font-size: 2rem;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 35px;
 `;
 
 interface PageBaseProps {

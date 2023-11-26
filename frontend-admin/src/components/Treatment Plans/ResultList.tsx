@@ -2,10 +2,7 @@ import styled from "styled-components";
 import { ResultElement } from "./ResultElement";
 import { FragmentType, gql, useFragment } from "../../gql";
 
-const Container = styled.div`
-  border: 1px solid black;
-  background-color: white;
-`;
+const Container = styled.div``;
 
 const ResultCount = styled.h2`
   margin: 15px 0 5px 0;

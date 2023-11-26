@@ -10,6 +10,7 @@ const SearchField = styled.input`
   padding: 15px;
   font-size: 20px;
   width: 100%;
+  outline: none;
 `;
 
 interface Props {
