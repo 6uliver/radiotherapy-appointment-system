@@ -1,4 +1,4 @@
-# OncoSync
+![OncoSync](https://i.imgur.com/VlBjdhF.png)
 
 ## Goal
 
