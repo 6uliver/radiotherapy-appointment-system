@@ -65,11 +65,18 @@ const fragment = gql(/* GraphQL */ `
 interface Props {
   machine: FragmentType<typeof fragment>;
 }
-const statuses = ["Working", "Maintenance", "Failure"];
+const statuses = [
+  "Working",
+  "Working",
+  "Working",
+  "Working",
+  "Maintenance",
+  "Failure",
+];
 
 export function Machine({ machine }: Props) {
   const machineFragment = useFragment(fragment, machine);
-  const status = statuses[Math.floor(Math.random() * 3)];
+  const status = statuses[Math.floor(Math.random() * statuses.length)];
   let color;
   switch (status) {
     case "Working":
