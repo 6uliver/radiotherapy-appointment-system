@@ -4,6 +4,7 @@ import { FragmentType, gql, useFragment } from "../../gql";
 import { Region } from "../../gql/graphql";
 import { format } from "date-fns";
 import { Constraints } from "./Constraints";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: grid;
@@ -89,8 +90,9 @@ interface Props {
 }
 
 export function ResultElement({ treatmentPlan }: Props) {
+  const navigate = useNavigate();
   const treatmentPlanFragment = useFragment(fragment, treatmentPlan);
-  const { region, patient, fractionCount, fractionMinutes, constraints } =
+  const { id, region, patient, fractionCount, fractionMinutes, constraints } =
     treatmentPlanFragment;
   const { dateOfBirth, firstName, lastName, ssn } = patient;
 
@@ -98,7 +100,7 @@ export function ResultElement({ treatmentPlan }: Props) {
   const convertedDateOfBirth = format(dateOfBirth, "PP");
 
   return (
-    <Container>
+    <Container onClick={() => navigate(`/treatment-plans/${id}`)}>
       <Section>
         <Title>Name</Title>
         <Text>

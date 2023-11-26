@@ -18,7 +18,7 @@ const machines = gql(/* GraphQL */ `
   query machines {
     machines {
       id
-      name
+      ...MachineforMachines
     }
   }
 `);
@@ -34,8 +34,8 @@ export function Machines() {
             {machinesQuery.data.machines.length} machines
           </ResultCount>
           <Container>
-            {machinesQuery.data.machines.map((machine, idx) => (
-              <Machine key={idx} machine={machine} />
+            {machinesQuery.data.machines.map((machine) => (
+              <Machine key={machine.id} machine={machine} />
             ))}
           </Container>
         </>
