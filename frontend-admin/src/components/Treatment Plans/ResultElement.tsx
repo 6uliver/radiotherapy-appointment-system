@@ -51,10 +51,12 @@ const fragment = gql(/* GraphQL */ `
     fractionCount
     fractionMinutes
     region
-    inpatient
-    breathHolding
-    largeBodied
-    kvImaging
+    constraints {
+      inpatient
+      breathHolding
+      largeBodied
+      kvImaging
+    }
     patient {
       id
       dateOfBirth
@@ -88,35 +90,28 @@ interface Props {
 
 export function ResultElement({ treatmentPlan }: Props) {
   const treatmentPlanFragment = useFragment(fragment, treatmentPlan);
+  const { region, patient, fractionCount, fractionMinutes, constraints } =
+    treatmentPlanFragment;
+  const { dateOfBirth, firstName, lastName, ssn } = patient;
 
-  const formattedRegion = formatRegion(treatmentPlanFragment.region);
-  const convertedDateOfBirth = format(
-    treatmentPlanFragment.patient.dateOfBirth,
-    "PP"
-  );
-  const constraints = {
-    inpatient: treatmentPlanFragment.inpatient,
-    largeBodied: treatmentPlanFragment.largeBodied,
-    breathHolding: treatmentPlanFragment.breathHolding,
-    kvImaging: treatmentPlanFragment.kvImaging,
-  };
+  const formattedRegion = formatRegion(region);
+  const convertedDateOfBirth = format(dateOfBirth, "PP");
 
   return (
     <Container>
       <Section>
         <Title>Name</Title>
         <Text>
-          {treatmentPlanFragment.patient.firstName}{" "}
-          {treatmentPlanFragment.patient.lastName}
+          {firstName} {lastName}
         </Text>
       </Section>
       <Section>
         <Title>SSN Number</Title>
-        <Text>{`${treatmentPlanFragment.patient.ssn} `}</Text>
+        <Text>{`${ssn} `}</Text>
       </Section>
       <Section>
         <Title>Date of Birth</Title>
-        <Text>{`${convertedDateOfBirth} `}</Text>
+        <Text>{convertedDateOfBirth}</Text>
       </Section>
       <Section>
         <Title>Region</Title>
@@ -124,11 +119,11 @@ export function ResultElement({ treatmentPlan }: Props) {
       </Section>
       <Section>
         <Title>Treatment Fractions</Title>
-        <Text>{treatmentPlanFragment.fractionCount}</Text>
+        <Text>{fractionCount}</Text>
       </Section>
       <Section>
         <Title>Approx Session Time</Title>
-        <Text>{treatmentPlanFragment.fractionMinutes} minutes</Text>
+        <Text>{fractionMinutes} minutes</Text>
       </Section>
       <Section>
         <Title>Constraints</Title>
