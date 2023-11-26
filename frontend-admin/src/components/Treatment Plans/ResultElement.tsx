@@ -3,10 +3,11 @@ import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 import { Region } from "../../gql/graphql";
 import { format } from "date-fns";
+import { Constraints } from "./Constraints";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
@@ -49,6 +50,10 @@ const fragment = gql(/* GraphQL */ `
     fractionCount
     fractionMinutes
     region
+    inpatient
+    breathHolding
+    largeBodied
+    kvImaging
     patient {
       id
       dateOfBirth
@@ -88,6 +93,12 @@ export function ResultElement({ treatmentPlan }: Props) {
     treatmentPlanFragment.patient.dateOfBirth,
     "PP"
   );
+  const constraints = {
+    inpatient: treatmentPlanFragment.inpatient,
+    largeBodied: treatmentPlanFragment.largeBodied,
+    breathHolding: treatmentPlanFragment.breathHolding,
+    kvImaging: treatmentPlanFragment.kvImaging,
+  };
 
   return (
     <Container>
@@ -111,11 +122,16 @@ export function ResultElement({ treatmentPlan }: Props) {
         <Text>{formattedRegion}</Text>
       </Section>
       <Section>
-        <Title>Treatment Plan</Title>
-        <Text>
-          {treatmentPlanFragment.fractionCount} x{" "}
-          {treatmentPlanFragment.fractionMinutes} minutes
-        </Text>
+        <Title>Treatment Fractions</Title>
+        <Text>{treatmentPlanFragment.fractionCount}</Text>
+      </Section>
+      <Section>
+        <Title>Approx Session Time</Title>
+        <Text>{treatmentPlanFragment.fractionMinutes} minutes</Text>
+      </Section>
+      <Section>
+        <Title>Constraints</Title>
+        <Constraints constraints={constraints} />
       </Section>
     </Container>
   );
