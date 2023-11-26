@@ -40,4 +40,9 @@ export class TreatmentPlanResolver {
   ) {
     return this.treatmentService.search(searchTerm);
   }
+
+  @Query(() => TreatmentPlan)
+  async treatmentPlanById(@Args('id', { type: () => String }) id: string) {
+    return this.treatmentService.getTreatmentPlan(id);
+  }
 }

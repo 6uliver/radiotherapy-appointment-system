@@ -24,9 +24,12 @@ export class TreatmentService {
   async search(searchTerm: string) {
     const patients = await this.patientService.search(searchTerm);
     const patientIds = patients.map((patient) => patient.id);
-    console.log(patientIds);
     return this.treatmentPlanRepository.findBy({
       patientId: In(patientIds),
     });
+  }
+
+  async getTreatmentPlan(id: string) {
+    return this.treatmentPlanRepository.findOneBy({ id });
   }
 }
