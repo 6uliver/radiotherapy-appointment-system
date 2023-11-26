@@ -2,7 +2,7 @@
 
 ## Goal
 
-Advancing radiotherapy appointment management for less advanced clinics
+Advancing radiotherapy appointment management
 
 ## Features
 
