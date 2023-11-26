@@ -3,7 +3,8 @@ services:
     build: frontend-admin
     init: true
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     ports:
       - 5173:5173
     volumes:
@@ -20,6 +21,13 @@ services:
       - ./backend/src:/app/src
     environment:
       DB_HOST: "db"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+      start_interval: 5s
   db:
     image: postgres:16
     environment:
