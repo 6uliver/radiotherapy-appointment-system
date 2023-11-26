@@ -26,6 +26,11 @@ export class TreatmentPlanResolver {
     return this.treatmentService.getFractionsForTreatmentPlan(treatmentPlan.id);
   }
 
+  @ResolveField(() => Number)
+  async finishedFractionCount(@Parent() treatmentPlan: TreatmentPlan) {
+    return this.treatmentService.getFractionCount(treatmentPlan.id);
+  }
+
   @ResolveField(() => Patient)
   async patient(@Parent() treatmentPlan: TreatmentPlan) {
     return this.patientService.getPatient(treatmentPlan.patientId);
@@ -49,6 +54,11 @@ export class TreatmentPlanResolver {
     @Args('searchTerm', { type: () => String }) searchTerm: string,
   ) {
     return this.treatmentService.search(searchTerm);
+  }
+
+  @Query(() => [TreatmentPlan])
+  async treatmentPlansWaitingForSchedule() {
+    return this.treatmentService.getTreatmentPlansWaitingForSchedule();
   }
 
   @Query(() => TreatmentPlan)

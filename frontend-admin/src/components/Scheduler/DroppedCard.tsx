@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import stc from "string-to-color";
+import { getColor } from "../../utilities/functions";
 
 const Container = styled.div`
   padding: 2px;
@@ -20,7 +20,7 @@ interface Props {
 export function DroppedCard({ id, name }: Props) {
   return (
     <Container>
-      <Wrapper bgColor={stc(id)}>{name}</Wrapper>
+      <Wrapper bgColor={getColor(id)}>{name}</Wrapper>
     </Container>
   );
 }

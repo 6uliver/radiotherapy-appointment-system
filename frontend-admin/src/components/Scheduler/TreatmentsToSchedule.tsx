@@ -3,6 +3,9 @@ import { Card } from "./Card";
 import { DroppedCard } from "./DroppedCard";
 import { DragOverlay, useDndMonitor } from "@dnd-kit/core";
 import { useState } from "react";
+import { gql } from "../../gql";
+import { useQuery } from "@apollo/client";
+import { getName } from "../../utilities/functions";
 
 const Container = styled.div`
   h1 {
@@ -23,18 +26,36 @@ const Box = styled.div`
   flex-direction: column;
   gap: 10px;
   padding: 10px;
+  overflow-x: scroll;
 `;
 
+const waitingForSchedule = gql(/* GraphQL */ `
+  query TreatmentsToSchedule {
+    treatmentPlansWaitingForSchedule {
+      id
+      fractionCount
+      finishedFractionCount
+      patient {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`);
+
 export function TreatmentsToSchedule() {
-  const [current, setCurrent] = useState<{ id: string }>();
+  const [current, setCurrent] = useState<{ id: string; name: string }>();
   const [isOver, setOver] = useState(false);
+
+  const waitingForScheduleQuery = useQuery(waitingForSchedule);
 
   useDndMonitor({
     onDragStart(event) {
-      setCurrent(event.active.data.current as { id: string });
+      setCurrent(event.active.data.current as { id: string; name: string });
     },
     onDragEnd(event) {
-      setCurrent(event.active.data.current as { id: string });
+      setCurrent(event.active.data.current as { id: string; name: string });
     },
     onDragMove(event) {
       setOver(event.over !== null);
@@ -47,14 +68,21 @@ export function TreatmentsToSchedule() {
       {!isOver && current && (
         <DragOverlay dropAnimation={null}>
           {/* <Hider hide={}> */}
-          <DroppedCard id={current.id} name={"Name"} />
+          <DroppedCard id={current.id} name={current.name} />
           {/* </Hider> */}
         </DragOverlay>
       )}
       <Box>
-        <Card name="Roland" />
-        <Card name="Judit" />
-        <Card name="Balázs" />
+        {waitingForScheduleQuery.data?.treatmentPlansWaitingForSchedule.map(
+          (treatmentPlan) => (
+            <Card
+              id={treatmentPlan.id}
+              name={getName(treatmentPlan.patient)}
+              count={treatmentPlan.fractionCount}
+              finished={treatmentPlan.finishedFractionCount}
+            />
+          )
+        )}
       </Box>
     </Container>
   );

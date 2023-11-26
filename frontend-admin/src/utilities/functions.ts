@@ -1,4 +1,16 @@
+import stc from "string-to-color";
+import ColorHash from "color-hash";
+
 import { Region } from "../gql/graphql";
+
+const colorHash = new ColorHash({
+  hue: {
+    min: 60,
+    max: 210,
+  },
+  lightness: [0.5, 0.65, 0.8],
+  saturation: 0.5,
+});
 
 export const regionNames: Record<Region, string> = {
   ABDOMEN: "Abdomen",
@@ -41,4 +53,7 @@ export function getName({
   lastName: string;
 }) {
   return `${firstName} ${lastName}`;
+}
+export function getColor(id: string) {
+  return colorHash.hex(id);
 }

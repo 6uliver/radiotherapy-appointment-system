@@ -20,6 +20,31 @@ export class TreatmentService {
     return this.treatmentPlanRepository.findBy({ patientId });
   }
 
+  async getTreatmentPlansWaitingForSchedule() {
+    const result = await this.fractionRepository
+      .createQueryBuilder()
+      .select("COUNT('Fraction.id')", 'fractionCount')
+      .addSelect('"Fraction"."treatmentPlanId"', 'treatmentPlanId')
+      .groupBy('"Fraction"."treatmentPlanId"')
+      .getRawMany();
+
+    const counts = {};
+
+    result.forEach((row) => {
+      counts[row.treatmentPlanId] = row.fractionCount;
+    });
+
+    const treatmentPlans = await this.treatmentPlanRepository.find();
+
+    return treatmentPlans.filter((treatmentPlan) => {
+      return treatmentPlan.fractionCount > (counts[treatmentPlan.id] ?? 0);
+    });
+  }
+
+  async getFractionCount(id: string) {
+    return this.fractionRepository.countBy({ treatmentPlanId: id });
+  }
+
   async getFractionsForTreatmentPlan(id: string) {
     return this.fractionRepository.findBy({ treatmentPlanId: id });
   }
