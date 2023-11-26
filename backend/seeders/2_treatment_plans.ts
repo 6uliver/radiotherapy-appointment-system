@@ -17,6 +17,7 @@ function createRandomTreatmentPlans(patients: Patient[]) {
       largeBodied: faker.datatype.boolean(),
       breathHolding: faker.datatype.boolean(),
       kvImaging: faker.datatype.boolean(),
+      transport: faker.datatype.boolean(),
     });
 }
 

@@ -23,10 +23,19 @@ export class AddBooleans1700958688054 implements MigrationInterface {
         type: 'boolean',
         isNullable: false,
       }),
+      new TableColumn({
+        name: 'transport',
+        type: 'boolean',
+        isNullable: false,
+      }),
     ]);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropColumn('treatment_plan', 'inpatient');
+    await queryRunner.dropColumn('treatment_plan', 'largeBodied');
+    await queryRunner.dropColumn('treatment_plan', 'breathHolding');
+    await queryRunner.dropColumn('treatment_plan', 'kvImaging');
+    await queryRunner.dropColumn('treatment_plan', 'transport');
   }
 }

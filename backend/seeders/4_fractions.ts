@@ -13,7 +13,7 @@ function createRandomFractions(
     const start = faker.date.recent();
     const treatmentPlan = faker.helpers.arrayElement(treatmentPlans);
     const end = new Date(
-      start.getTime() + treatmentPlan.fractionMinutes * 24 * 60,
+      start.getTime() + treatmentPlan.fractionMinutes * 60 * 1000,
     );
     return new Fraction({
       id: faker.string.uuid(),

@@ -33,8 +33,10 @@ export class TreatmentPlanResolver {
 
   @ResolveField(() => Constraints)
   async constraints(@Parent() treatmentPlan: TreatmentPlan) {
-    const { inpatient, largeBodied, breathHolding, kvImaging } = treatmentPlan;
+    const { transport, inpatient, largeBodied, breathHolding, kvImaging } =
+      treatmentPlan;
     return {
+      transport,
       inpatient,
       largeBodied,
       breathHolding,

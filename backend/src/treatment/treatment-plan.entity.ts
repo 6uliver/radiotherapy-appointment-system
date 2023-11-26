@@ -39,4 +39,7 @@ export class TreatmentPlan {
 
   @Column()
   kvImaging: boolean;
+
+  @Column()
+  transport: boolean;
 }
