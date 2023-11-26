@@ -54,7 +54,7 @@ export function Calendar() {
         <Header>
           <HeaderPlaceholder />
           {days.map((_i, idx) => (
-            <DayLegend idx={idx} />
+            <DayLegend key={idx} idx={idx} />
           ))}
           <ScrollPlaceholder />
         </Header>

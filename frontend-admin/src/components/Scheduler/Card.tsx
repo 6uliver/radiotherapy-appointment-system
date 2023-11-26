@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useDrag } from "react-dnd";
-
+import { useDraggable } from "@dnd-kit/core";
 interface Props {
   name: string;
 }
@@ -12,24 +11,16 @@ const Wrapper = styled.div`
 `;
 
 export function Card({ name }: Props) {
-  const [collected, drag, dragPreview] = useDrag({
-    type: "CARD",
-    item: { id: name },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-    options: {
-      dropEffect: "move",
+  const { listeners, attributes, isDragging, setNodeRef } = useDraggable({
+    id: name,
+    data: {
+      id: name,
     },
   });
 
-  return collected.isDragging ? (
-    <Wrapper ref={dragPreview}>
-      {name} - preview - {collected.isDragging ? "dragging" : "not dragging"}
-    </Wrapper>
-  ) : (
-    <Wrapper ref={drag}>
-      {name} - {collected.isDragging ? "dragging" : "not dragging"}
+  return (
+    <Wrapper ref={setNodeRef} {...listeners} {...attributes}>
+      {name} - {isDragging ? "dragging" : "not dragging"}
     </Wrapper>
   );
 }

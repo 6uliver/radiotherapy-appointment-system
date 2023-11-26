@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TimeSlot } from "./TimeSlot";
 
 const Row = styled.div`
   border-bottom: 1px solid grey;
@@ -12,17 +13,12 @@ const Row = styled.div`
   }
 `;
 
-const SubRow = styled.div`
-  height: 10px;
-  width: 10vw;
-`;
-
 export function Cell() {
   return (
     <Row>
-      <SubRow></SubRow>
-      <SubRow></SubRow>
-      <SubRow></SubRow>
+      <TimeSlot />
+      <TimeSlot />
+      <TimeSlot />
     </Row>
   );
 }

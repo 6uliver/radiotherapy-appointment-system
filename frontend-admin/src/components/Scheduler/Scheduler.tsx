@@ -2,6 +2,7 @@ import { Calendar } from "./Calendar";
 import { PageBase } from "../PageBase";
 import { TreatmentsToSchedule } from "./TreatmentsToSchedule";
 import styled from "styled-components";
+import { DndContext, pointerWithin } from "@dnd-kit/core";
 
 const Container = styled.div`
   display: flex;
@@ -12,8 +13,10 @@ export function Scheduler() {
   return (
     <PageBase title="Scheduler">
       <Container>
-        <Calendar />
-        <TreatmentsToSchedule />
+        <DndContext collisionDetection={pointerWithin}>
+          <Calendar />
+          <TreatmentsToSchedule />
+        </DndContext>
       </Container>
     </PageBase>
   );
