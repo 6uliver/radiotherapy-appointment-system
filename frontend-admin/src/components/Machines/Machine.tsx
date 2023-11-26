@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 import { FaCircle } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: grid;
@@ -75,7 +76,9 @@ const statuses = [
 ];
 
 export function Machine({ machine }: Props) {
+  const navigate = useNavigate();
   const machineFragment = useFragment(fragment, machine);
+  const { id, name } = machineFragment;
   const status = statuses[Math.floor(Math.random() * statuses.length)];
   let color;
   switch (status) {
@@ -93,10 +96,10 @@ export function Machine({ machine }: Props) {
   }
 
   return (
-    <Container>
+    <Container onClick={() => navigate(`/machines/${id}`)}>
       <Section>
         <Title>Name</Title>
-        <Text>{machineFragment.name}</Text>
+        <Text>{name}</Text>
       </Section>
       <Section>
         <Title>Status</Title>

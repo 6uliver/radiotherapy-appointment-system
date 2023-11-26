@@ -12,6 +12,7 @@ import { Home } from "./components/Home";
 import { TreatmentPlans } from "./components/Treatment Plans/TreatmentPlans";
 import { Machines } from "./components/Machines/Machines";
 import { TreatmentPlanPage } from "./components/Treatment Plans/TreatmentPlanPage";
+import { MachinePage } from "./components/Machines/MachinePage";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -46,6 +47,7 @@ export function App() {
                 path="treatment-plans/:id"
                 element={<TreatmentPlanPage />}
               />
+              <Route path="machines/:id" element={<MachinePage />} />
             </Route>
           </Routes>
         </PageWrapper>
