@@ -15,17 +15,16 @@ const Container = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 5px;
+  font-weight: bold;
 `;
 
 const Box = styled.div`
-  border: 1px solid black;
   width: 15vw;
   height: 65vh;
-  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
+  padding: 10px 0;
   overflow-x: scroll;
 `;
 
@@ -64,7 +63,6 @@ export function TreatmentsToSchedule() {
 
   return (
     <Container>
-      <Title>Treatments To Schedule</Title>
       {!isOver && current && (
         <DragOverlay dropAnimation={null}>
           {/* <Hider hide={}> */}
@@ -73,9 +71,11 @@ export function TreatmentsToSchedule() {
         </DragOverlay>
       )}
       <Box>
+        <Title>Treatments To Schedule</Title>
         {waitingForScheduleQuery.data?.treatmentPlansWaitingForSchedule.map(
           (treatmentPlan) => (
             <Card
+              key={treatmentPlan.id}
               id={treatmentPlan.id}
               name={getName(treatmentPlan.patient)}
               count={treatmentPlan.fractionCount}

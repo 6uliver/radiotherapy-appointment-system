@@ -33,6 +33,13 @@ const fractionsGQL = gql(/* GraphQL */ `
   }
 `);
 
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+`;
+
 export function Scheduler() {
   const [machineId, setMachineId] = useState<string | null>(null);
   const [week, setWeek] = useState(getWeek(new Date()) - 1);
@@ -57,12 +64,15 @@ export function Scheduler() {
 
   const fractions = fractionsQuery.data?.machineById.fractionsByDate || [];
 
-  console.log(fractionsQuery.data);
-
   return (
     <PageBase title="Scheduler">
-      <MachineSelector onMachineSelected={setMachineId} />
-      <div>Week: {week}</div>
+      <Header>
+        <MachineSelector
+          machineId={machineId}
+          onMachineSelected={setMachineId}
+        />
+        <div>Week: {week}</div>
+      </Header>
       <FractionProvider value={fractions}>
         <Container>
           <DndContext collisionDetection={pointerWithin}>

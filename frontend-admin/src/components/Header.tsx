@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const Logo = styled.img`
-  margin: 25px;
+  margin: 20px;
   height: 100px;
   width: auto;
 `;

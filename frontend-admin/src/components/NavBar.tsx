@@ -4,12 +4,11 @@ import { Link } from "react-router-dom";
 
 const Container = styled.nav`
   background-color: ${OncoLightGreen};
-  border-bottom: 1px black solid;
-  border-top: 1px black solid;
 `;
 
 const InnerContainer = styled.div`
   margin: 0 auto;
+  padding: 10px 20px;
   display: flex;
   width: 85%;
 `;
@@ -21,7 +20,7 @@ const Button = styled(Link)`
   border: 0;
   border-radius: 0;
   cursor: pointer;
-  margin: 8px 16px 8px 16px;
+  margin: 8px 30px 8px 0;
   font-size: 18px;
   transition: 1000ms all;
   text-decoration: none;
@@ -44,7 +43,6 @@ export function NavBar() {
         <Button to="/scheduler">Scheduler</Button>
         <Button to="/treatment-plans">Treament Plans</Button>
         <Button to="/machines">Machines</Button>
-        <Button to="/profile">Profile</Button>
         <Button to="/settings">Settings</Button>
       </InnerContainer>
     </Container>

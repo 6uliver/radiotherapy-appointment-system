@@ -55,13 +55,16 @@ export function TimeSlot({ start, end }: Props) {
   return (
     <Wrapper ref={setNodeRef}>
       {isOver && active?.data.current && (
-        <DroppedCard id={active.data.current.id} name="" />
+        <DroppedCard
+          id={active.data.current.id}
+          name={active.data.current.name}
+        />
       )}
       {fraction && (
         <CardWrapper>
           <DroppedCard
             id={fraction.treatmentPlan.patient.id}
-            name={getName(fraction.treatmentPlan.patient)}
+            name={`${getName(fraction.treatmentPlan.patient)}`}
           />
         </CardWrapper>
       )}

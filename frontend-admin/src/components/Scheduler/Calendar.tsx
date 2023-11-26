@@ -16,8 +16,6 @@ const Table = styled.div`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  background-color: white;
-  border: 1px solid black;
   height: 65vh;
 `;
 
@@ -53,7 +51,6 @@ interface Props {
 export function Calendar({ start }: Props) {
   return (
     <Container>
-      <Title>Calendar</Title>
       <Table>
         <Header>
           <HeaderPlaceholder />
