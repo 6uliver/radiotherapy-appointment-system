@@ -4,6 +4,7 @@ import { TreatmentPlan } from './treatment-plan.entity';
 import { Fraction } from './fraction.entity';
 import { PatientService } from 'src/patient/patient.service';
 import { Patient } from 'src/patient/patient.entity';
+import { Constraints } from './constraints';
 
 @Resolver(() => TreatmentPlan)
 export class TreatmentPlanResolver {
@@ -20,6 +21,17 @@ export class TreatmentPlanResolver {
   @ResolveField(() => Patient)
   async patient(@Parent() treatmentPlan: TreatmentPlan) {
     return this.patientService.getPatient(treatmentPlan.patientId);
+  }
+
+  @ResolveField(() => Constraints)
+  async constraints(@Parent() treatmentPlan: TreatmentPlan) {
+    const { inpatient, largeBodied, breathHolding, kvImaging } = treatmentPlan;
+    return {
+      inpatient,
+      largeBodied,
+      breathHolding,
+      kvImaging,
+    };
   }
 
   @Query(() => [TreatmentPlan])
