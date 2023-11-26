@@ -15,6 +15,6 @@ Advancing radiotherapy appointment management
 ## Future vision
 
 - Integration with Aria RTM: automated machine feedback
-- Activity log: Who scheduled which appointment and when
+- Activity log: who scheduled which appointment and when
 - Inpatient bed reservation: easy to use platform for managing space in your clinic
 - Machine workload statistics: detailed daily, weekly and monthly evaluation
