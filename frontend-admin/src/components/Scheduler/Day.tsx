@@ -19,7 +19,7 @@ export function Day({ start }: Props) {
   return (
     <Column>
       {timeslots.map((_i, idx) => (
-        <Cell key={idx} start={start + idx * 30 * 60 * 1000} />
+        <Cell key={idx} start={start + idx * 15 * 60 * 1000} />
       ))}
     </Column>
   );

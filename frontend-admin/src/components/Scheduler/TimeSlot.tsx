@@ -49,7 +49,7 @@ export function TimeSlot({ start, end }: Props) {
     .map((fraction) => useFragment(fragment, fraction));
   // console.log(fractions);
   const fraction = data.find((fraction) => {
-    return start < fraction.start && fraction.start < end;
+    return start <= fraction.start && fraction.start < end;
   });
 
   return (

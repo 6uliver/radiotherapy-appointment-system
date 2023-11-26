@@ -8,8 +8,8 @@ interface Props {
   finished: number;
 }
 
-const Wrapper = styled.div<{ bgColor: string }>`
-  background-color: ${(props) => props.bgColor};
+const Wrapper = styled.div<{ $bgColor: string }>`
+  background-color: ${(props) => props.$bgColor};
   border-radius: 5px;
   padding: 10px;
 `;
@@ -25,7 +25,7 @@ export function Card({ id, name, count, finished }: Props) {
 
   return (
     <Wrapper
-      bgColor={getColor(id)}
+      $bgColor={getColor(id)}
       ref={setNodeRef}
       {...listeners}
       {...attributes}

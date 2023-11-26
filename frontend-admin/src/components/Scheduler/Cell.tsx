@@ -20,14 +20,11 @@ interface Props {
 export function Cell({ start }: Props) {
   return (
     <Row>
-      <TimeSlot start={start} end={start + 15 * 60 * 1000} />
+      <TimeSlot start={start} end={start + 5 * 60 * 1000} />
+      <TimeSlot start={start + 5 * 60 * 1000} end={start + 2 * 5 * 60 * 1000} />
       <TimeSlot
-        start={start + 15 * 60 * 1000}
-        end={start + 2 * 15 * 60 * 1000}
-      />
-      <TimeSlot
-        start={start + 2 * 15 * 60 * 1000}
-        end={start + 3 * 15 * 60 * 1000}
+        start={start + 2 * 5 * 60 * 1000}
+        end={start + 3 * 5 * 60 * 1000}
       />
     </Row>
   );

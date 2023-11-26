@@ -5,8 +5,8 @@ const Container = styled.div`
   padding: 2px;
 `;
 
-const Wrapper = styled.div<{ bgColor: string }>`
-  background-color: ${(props) => props.bgColor};
+const Wrapper = styled.div<{ $bgColor: string }>`
+  background-color: ${(props) => props.$bgColor};
   border-radius: 5px;
   padding: 5px;
   height: 26px;
@@ -20,7 +20,7 @@ interface Props {
 export function DroppedCard({ id, name }: Props) {
   return (
     <Container>
-      <Wrapper bgColor={getColor(id)}>{name}</Wrapper>
+      <Wrapper $bgColor={getColor(id)}>{name}</Wrapper>
     </Container>
   );
 }
