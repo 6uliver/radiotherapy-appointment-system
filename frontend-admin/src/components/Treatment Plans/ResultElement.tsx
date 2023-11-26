@@ -4,11 +4,11 @@ import { FragmentType, gql, useFragment } from "../../gql";
 import { format } from "date-fns";
 import { Constraints } from "./Constraints";
 import { useNavigate } from "react-router-dom";
-import { formatRegion, formatSSN } from "../../utilities/functions";
+import { formatRegion, formatSSN, getTpn } from "../../utilities/functions";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
@@ -79,10 +79,6 @@ export function ResultElement({ treatmentPlan }: Props) {
     treatmentPlanFragment;
   const { dateOfBirth, firstName, lastName, ssn } = patient;
 
-  const formattedRegion = formatRegion(region);
-  const formattedSSN = formatSSN(ssn);
-  const convertedDateOfBirth = format(dateOfBirth, "PP");
-
   return (
     <Container onClick={() => navigate(`/treatment-plans/${id}`)}>
       <Section>
@@ -92,16 +88,20 @@ export function ResultElement({ treatmentPlan }: Props) {
         </Text>
       </Section>
       <Section>
+        <Title>TPN</Title>
+        <Text>{getTpn(id)}</Text>
+      </Section>
+      <Section>
         <Title>SSN Number</Title>
-        <Text>{formattedSSN}</Text>
+        <Text>{formatSSN(ssn)}</Text>
       </Section>
       <Section>
         <Title>Date of Birth</Title>
-        <Text>{convertedDateOfBirth}</Text>
+        <Text>{format(dateOfBirth, "PP")}</Text>
       </Section>
       <Section>
         <Title>Region</Title>
-        <Text>{formattedRegion}</Text>
+        <Text>{formatRegion(region)}</Text>
       </Section>
       <Section>
         <Title>Treatment Fractions</Title>

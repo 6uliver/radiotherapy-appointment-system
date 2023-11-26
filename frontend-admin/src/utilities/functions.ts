@@ -28,3 +28,7 @@ export function formatBoolean(bool: boolean) {
     return "No";
   }
 }
+
+export function getTpn(uid: string) {
+  return uid.slice(uid.length - 6, uid.length - 1).toUpperCase();
+}

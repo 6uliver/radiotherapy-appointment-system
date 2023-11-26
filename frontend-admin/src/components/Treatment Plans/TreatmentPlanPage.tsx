@@ -9,6 +9,7 @@ import {
   formatBoolean,
   formatRegion,
   formatSSN,
+  getTpn,
 } from "../../utilities/functions";
 
 const Container = styled.div`
@@ -17,6 +18,7 @@ const Container = styled.div`
 `;
 
 const Section = styled.div`
+  width: 40%;
   border: 2px solid ${OncoDarkGreen};
   border-radius: 10px;
   padding: 20px;
@@ -62,6 +64,8 @@ const treatmentPlan = gql(`
         lastName
         dateOfBirth
         ssn
+        email
+        phone
       }
     }
   }
@@ -78,31 +82,46 @@ export function TreatmentPlanPage() {
   if (!treatmentPlanQuery.data) {
     return;
   }
-  const { patient, region, fractionCount, fractions, constraints } =
-    treatmentPlanQuery.data.treatmentPlanById;
-  const { firstName, lastName, dateOfBirth, ssn } = patient;
+  const {
+    id: uid,
+    patient,
+    region,
+    fractionCount,
+    fractions,
+    constraints,
+  } = treatmentPlanQuery.data.treatmentPlanById;
+  const { firstName, lastName, dateOfBirth, ssn, email, phone } = patient;
   const { inpatient, largeBodied, breathHolding, kvImaging } = constraints;
-  const title = `Treatment plan for ${firstName} ${lastName}`;
+  const fullName = `${firstName} ${lastName}`;
+  const title = `${getTpn(uid)} : ${fullName}`;
 
   return (
     <PageBase title={title}>
       <Container>
         <Section>
           <Parameter>
-            <Title>Date of birth</Title>
-            <Value>{format(dateOfBirth, "PP")}</Value>
+            <Title>TPN</Title>
+            <Value>{getTpn(uid)}</Value>
           </Parameter>
           <Parameter>
             <Title>SSN</Title>
             <Value>{formatSSN(ssn)}</Value>
           </Parameter>
           <Parameter>
+            <Title>Name</Title>
+            <Value>{fullName}</Value>
+          </Parameter>
+          <Parameter>
+            <Title>Date of birth</Title>
+            <Value>{format(dateOfBirth, "PP")}</Value>
+          </Parameter>
+          <Parameter>
             <Title>Email</Title>
-            <Value>kismaria@example.com</Value>
+            <Value>{email}</Value>
           </Parameter>
           <Parameter>
             <Title>Phone</Title>
-            <Value>+36701234567</Value>
+            <Value>{phone}</Value>
           </Parameter>
           <Parameter>
             <Title>Region</Title>
@@ -131,10 +150,7 @@ export function TreatmentPlanPage() {
           <Title>Comments</Title>
           <Value></Value>
         </Section>
-        <Section>
-          <h1>Schedule</h1>
-          <button>edit</button>
-        </Section>
+        <Section></Section>
       </Container>
     </PageBase>
   );
