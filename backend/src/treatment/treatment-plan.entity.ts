@@ -27,4 +27,20 @@ export class TreatmentPlan {
   @Field(() => Region)
   @Column()
   region: Region;
+
+  @Field()
+  @Column()
+  inpatient: boolean;
+
+  @Field()
+  @Column()
+  largeBodied: boolean;
+
+  @Field()
+  @Column()
+  breathHolding: boolean;
+
+  @Field()
+  @Column()
+  kvImaging: boolean;
 }

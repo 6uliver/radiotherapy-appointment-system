@@ -13,6 +13,10 @@ function createRandomTreatmentPlans(patients: Patient[]) {
       fractionCount: faker.number.int({ min: 1, max: 35 }),
       fractionMinutes: faker.number.int({ min: 10, max: 30 }),
       region: faker.helpers.enumValue(Region),
+      inpatient: faker.datatype.boolean(),
+      largeBodied: faker.datatype.boolean(),
+      breathHolding: faker.datatype.boolean(),
+      kvImaging: faker.datatype.boolean(),
     });
 }
 
