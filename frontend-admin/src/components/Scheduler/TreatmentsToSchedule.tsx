@@ -33,7 +33,7 @@ export function TreatmentsToSchedule() {
     onDragStart(event) {
       setCurrent(event.active.data.current as { id: string });
     },
-    onDragStart(event) {
+    onDragEnd(event) {
       setCurrent(event.active.data.current as { id: string });
     },
     onDragMove(event) {
