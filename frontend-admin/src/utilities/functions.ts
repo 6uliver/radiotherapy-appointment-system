@@ -20,3 +20,11 @@ export function formatRegion(region: Region) {
 export function formatSSN(ssn: string) {
   return ssn.slice(0, 3) + " " + ssn.slice(2, 5) + " " + ssn.slice(5, 8);
 }
+
+export function formatBoolean(bool: boolean) {
+  if (bool) {
+    return "Yes";
+  } else {
+    return "No";
+  }
+}

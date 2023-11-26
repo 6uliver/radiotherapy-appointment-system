@@ -5,7 +5,11 @@ import { gql } from "../../gql";
 import { useQuery } from "@apollo/client";
 import { OncoDarkGreen } from "../../theme";
 import { format } from "date-fns";
-import { formatRegion, formatSSN } from "../../utilities/functions";
+import {
+  formatBoolean,
+  formatRegion,
+  formatSSN,
+} from "../../utilities/functions";
 
 const Container = styled.div`
   display: flex;
@@ -23,19 +27,35 @@ const Section = styled.div`
 `;
 
 const Parameter = styled.div`
-  display: flex;
-
-  :last-child {
-    font-weight: bold;
-    padding: 0 30px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
+
+const Title = styled.div`
+  font-weight: bold;
+`;
+
+const Value = styled.div``;
 
 const treatmentPlan = gql(`
   query TreatmentPlan($id: ID!) {
     treatmentPlanById(id: $id) {
       id
       region
+      fractionCount
+      constraints {
+        inpatient
+        breathHolding
+        largeBodied
+        kvImaging
+      }
+      fractions {
+        start
+        end
+        machine {
+          name
+        }
+      }
       patient {
         id
         firstName
@@ -58,54 +78,58 @@ export function TreatmentPlanPage() {
   if (!treatmentPlanQuery.data) {
     return;
   }
-  const { patient, region } = treatmentPlanQuery.data.treatmentPlanById;
+  const { patient, region, fractionCount, fractions, constraints } =
+    treatmentPlanQuery.data.treatmentPlanById;
   const { firstName, lastName, dateOfBirth, ssn } = patient;
-  const title = `${firstName} ${lastName}`;
-  const convertedDateOfBirth = format(dateOfBirth, "PP");
-  const formattedRegion = formatRegion(region);
-  const formattedSSN = formatSSN(ssn);
+  const { inpatient, largeBodied, breathHolding, kvImaging } = constraints;
+  const title = `Treatment plan for ${firstName} ${lastName}`;
 
   return (
     <PageBase title={title}>
       <Container>
         <Section>
           <Parameter>
-            Date of birth<div>{convertedDateOfBirth}</div>
+            <Title>Date of birth</Title>
+            <Value>{format(dateOfBirth, "PP")}</Value>
           </Parameter>
           <Parameter>
-            SSN<div>{formattedSSN}</div>
+            <Title>SSN</Title>
+            <Value>{formatSSN(ssn)}</Value>
           </Parameter>
           <Parameter>
-            Email<div>kismaria@example.com</div>
+            <Title>Email</Title>
+            <Value>kismaria@example.com</Value>
           </Parameter>
           <Parameter>
-            Phone<div>+36701234567</div>
+            <Title>Phone</Title>
+            <Value>+36701234567</Value>
           </Parameter>
           <Parameter>
-            Region <div>{formattedRegion}</div>
+            <Title>Region</Title>
+            <Value>{formatRegion(region)}</Value>
           </Parameter>
           <Parameter>
-            Fractions <div>1/6</div>
+            <Title>Transport</Title>
+            <Value>Yes</Value>
           </Parameter>
           <Parameter>
-            Inpatient<div>yes</div>
+            <Title>Inpatient</Title>
+            <Value>{formatBoolean(inpatient)}</Value>
           </Parameter>
           <Parameter>
-            Mobility<div>wheelchair</div>
+            <Title>Large bodied</Title>
+            <Value>{formatBoolean(largeBodied)}</Value>
           </Parameter>
           <Parameter>
-            Need assistance for transport<div>yes</div>
+            <Title>Breath holding</Title>
+            <Value>{formatBoolean(breathHolding)}</Value>
           </Parameter>
           <Parameter>
-            Large-bodied<div>yes</div>
+            <Title>kV imaging</Title>
+            <Value>{formatBoolean(kvImaging)}</Value>
           </Parameter>
-          <Parameter>
-            Breath-holding<div>yes</div>
-          </Parameter>
-          <Parameter>
-            kV imaging<div>yes</div>
-          </Parameter>
-          <div>Comments</div>
+          <Title>Comments</Title>
+          <Value></Value>
         </Section>
         <Section>
           <h1>Schedule</h1>
