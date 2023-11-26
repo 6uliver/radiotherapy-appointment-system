@@ -11,7 +11,7 @@ import { Settings } from "./components/Settings";
 import { Home } from "./components/Home";
 import { TreatmentPlans } from "./components/Treatment Plans/TreatmentPlans";
 import { Machines } from "./components/Machines/Machines";
-import { TreatmentPlanPage } from "./components/Treatment Plans/TreatmentPlanPage";
+import { PlanPage } from "./components/Treatment Plans/PlanPage";
 import { MachinePage } from "./components/Machines/MachinePage";
 
 const PageWrapper = styled.div`
@@ -43,10 +43,7 @@ export function App() {
               <Route path="machines" element={<Machines />} />
               <Route path="profile" element={<Profile />} />
               <Route path="settings" element={<Settings />} />
-              <Route
-                path="treatment-plans/:id"
-                element={<TreatmentPlanPage />}
-              />
+              <Route path="treatment-plans/:id" element={<PlanPage />} />
               <Route path="machines/:id" element={<MachinePage />} />
             </Route>
           </Routes>

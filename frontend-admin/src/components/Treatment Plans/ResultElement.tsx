@@ -92,7 +92,7 @@ export function ResultElement({ treatmentPlan }: Props) {
         <Text>{getTpn(id)}</Text>
       </Section>
       <Section>
-        <Title>SSN Number</Title>
+        <Title>SSN</Title>
         <Text>{formatSSN(ssn)}</Text>
       </Section>
       <Section>

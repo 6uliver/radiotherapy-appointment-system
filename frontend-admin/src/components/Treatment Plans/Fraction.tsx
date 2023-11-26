@@ -6,13 +6,10 @@ import { format } from "date-fns";
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 0px;
 
   align-items: start;
   min-height: 75px;
-  margin: 5px;
+  margin-bottom: 3px;
   padding: 15px;
   background-color: ${OncoLightGreen};
   border: solid 1px grey;
@@ -31,9 +28,7 @@ const Container = styled.div`
   }
 `;
 
-const Section = styled.div`
-  margin-right: 15px;
-`;
+const Section = styled.div``;
 
 const Title = styled.h1`
   margin-bottom: 5px;
