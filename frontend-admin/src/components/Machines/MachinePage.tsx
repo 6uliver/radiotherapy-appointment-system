@@ -3,8 +3,58 @@ import styled from "styled-components";
 import { PageBase } from "../PageBase";
 import { gql } from "../../gql";
 import { useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import { OncoDarkGreen } from "../../theme";
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Details = styled.div`
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Appointments = styled.div`
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SectionHeader = styled.h1`
+  padding: 0 0 5px 5px;
+`;
+
+const Section = styled.div`
+  width: 90%;
+  border: 2px solid ${OncoDarkGreen};
+  padding: 3px;
+  height: 65vh;
+
+  display: flex;
+  flex-direction: column;
+`;
+
+const Parameter = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 15px;
+`;
+
+const Title = styled.div`
+  font-weight: bold;
+`;
+
+const Value = styled.div``;
+
+const Comments = styled.textarea`
+  height: 100%;
+  padding: 0 0 0 0;
+  margin-top: 5px;
+  resize: none;
+`;
 
 const machine = gql(`
   query Machine($id: ID!) {
@@ -29,7 +79,31 @@ export function MachinePage() {
 
   return (
     <PageBase title={machineQuery.data.machineById.name}>
-      <Container></Container>
+      <Container>
+        <Details>
+          <SectionHeader>Details</SectionHeader>
+          <Section>
+            <Parameter>
+              <Title>Name</Title>
+              <Value>{machineQuery.data.machineById.name}</Value>
+            </Parameter>
+            <Parameter>
+              <Title>Last maintenance</Title>
+              <Value>{format(1692212112222, "PP")}</Value>
+            </Parameter>
+            <Parameter>
+              <Title>Upcoming maintenance</Title>
+              <Value>{format(1730812112222, "PP")}</Value>
+            </Parameter>
+            <Title>Comments</Title>
+            <Comments />
+          </Section>
+        </Details>
+        <Appointments>
+          <SectionHeader>{`Allocated appointments`}</SectionHeader>
+          <Section></Section>
+        </Appointments>
+      </Container>
     </PageBase>
   );
 }

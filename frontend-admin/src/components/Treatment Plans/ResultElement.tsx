@@ -53,6 +53,7 @@ const fragment = gql(/* GraphQL */ `
     fractionMinutes
     region
     constraints {
+      transport
       inpatient
       breathHolding
       largeBodied

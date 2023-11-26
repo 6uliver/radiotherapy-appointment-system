@@ -5,13 +5,9 @@ import { gql } from "../../gql";
 import { useQuery } from "@apollo/client";
 import { OncoDarkGreen } from "../../theme";
 import { format } from "date-fns";
-import {
-  formatBoolean,
-  formatRegion,
-  formatSSN,
-  getTpn,
-} from "../../utilities/functions";
+import { formatRegion, formatSSN, getTpn } from "../../utilities/functions";
 import { Fraction } from "./Fraction";
+import { Constraints } from "./Constraints";
 
 const Container = styled.div`
   display: flex;
@@ -113,8 +109,6 @@ export function PlanPage() {
     constraints,
   } = treatmentPlanQuery.data.treatmentPlanById;
   const { firstName, lastName, dateOfBirth, ssn, email, phone } = patient;
-  const { transport, inpatient, largeBodied, breathHolding, kvImaging } =
-    constraints;
   const fullName = `${firstName} ${lastName}`;
   const title = `${getTpn(uid)} : ${fullName}`;
 
@@ -153,24 +147,8 @@ export function PlanPage() {
               <Value>{formatRegion(region)}</Value>
             </Parameter>
             <Parameter>
-              <Title>Transport</Title>
-              <Value>{formatBoolean(transport)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Inpatient</Title>
-              <Value>{formatBoolean(inpatient)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Large bodied</Title>
-              <Value>{formatBoolean(largeBodied)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>Breath holding</Title>
-              <Value>{formatBoolean(breathHolding)}</Value>
-            </Parameter>
-            <Parameter>
-              <Title>kV imaging</Title>
-              <Value>{formatBoolean(kvImaging)}</Value>
+              <Title>Constraints</Title>
+              <Constraints constraints={constraints} />
             </Parameter>
             <Title>Comments</Title>
             <Comments />
