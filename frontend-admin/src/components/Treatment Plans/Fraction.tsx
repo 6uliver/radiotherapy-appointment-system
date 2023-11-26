@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { OncoLightGreen, OncoWhite } from "../../theme";
+import { OncoLightGreen } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 import { format } from "date-fns";
 
