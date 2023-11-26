@@ -1,4 +1,4 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { MachineService } from './machine.service';
 import { Machine } from './machine.entity';
 
@@ -12,7 +12,7 @@ export class MachineResolver {
   }
 
   @Query(() => Machine)
-  async machineById(@Args('id') id: string) {
+  async machineById(@Args('id', { type: () => ID }) id: string) {
     return this.machineService.getMachine(id);
   }
 }

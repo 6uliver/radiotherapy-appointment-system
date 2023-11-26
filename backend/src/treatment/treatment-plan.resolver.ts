@@ -1,4 +1,11 @@
-import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  ID,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { TreatmentService } from './treatment.service';
 import { TreatmentPlan } from './treatment-plan.entity';
 import { Fraction } from './fraction.entity';
@@ -42,7 +49,7 @@ export class TreatmentPlanResolver {
   }
 
   @Query(() => TreatmentPlan)
-  async treatmentPlanById(@Args('id', { type: () => String }) id: string) {
+  async treatmentPlanById(@Args('id', { type: () => ID }) id: string) {
     return this.treatmentService.getTreatmentPlan(id);
   }
 }
