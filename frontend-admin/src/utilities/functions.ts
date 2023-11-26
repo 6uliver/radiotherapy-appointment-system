@@ -32,3 +32,13 @@ export function formatBoolean(bool: boolean) {
 export function getTpn(uid: string) {
   return uid.slice(uid.length - 6, uid.length - 1).toUpperCase();
 }
+
+export function getName({
+  firstName,
+  lastName,
+}: {
+  firstName: string;
+  lastName: string;
+}) {
+  return `${firstName} ${lastName}`;
+}

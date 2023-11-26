@@ -1,6 +1,8 @@
 import { createContext } from "react";
-import { Fraction } from "../../gql/graphql";
+import { FractionsForSchedulerQuery } from "../../gql/graphql";
 
-export const FractionContext = createContext<Partial<Fraction>[]>([]);
+export const FractionContext = createContext<
+  FractionsForSchedulerQuery["machineById"]["fractionsByDate"]
+>([]);
 
 export const FractionProvider = FractionContext.Provider;

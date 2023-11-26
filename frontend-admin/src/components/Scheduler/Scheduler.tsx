@@ -27,6 +27,7 @@ const fractionsGQL = gql(/* GraphQL */ `
         id
         start
         end
+        ...FractionsForTimeSlot
       }
     }
   }
@@ -56,7 +57,7 @@ export function Scheduler() {
 
   const fractions = fractionsQuery.data?.machineById.fractionsByDate || [];
 
-  console.log(fractions);
+  console.log(fractionsQuery.data);
 
   return (
     <PageBase title="Scheduler">

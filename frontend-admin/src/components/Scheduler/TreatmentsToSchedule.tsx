@@ -47,7 +47,7 @@ export function TreatmentsToSchedule() {
       {!isOver && current && (
         <DragOverlay dropAnimation={null}>
           {/* <Hider hide={}> */}
-          <DroppedCard patient={current} />
+          <DroppedCard id={current.id} name={"Name"} />
           {/* </Hider> */}
         </DragOverlay>
       )}

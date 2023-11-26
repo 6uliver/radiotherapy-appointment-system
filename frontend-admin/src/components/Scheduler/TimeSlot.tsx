@@ -3,6 +3,8 @@ import { DroppedCard } from "./DroppedCard";
 import { useDroppable } from "@dnd-kit/core";
 import { useContext, useMemo } from "react";
 import { FractionContext } from "./FractionContext";
+import { gql, useFragment } from "../../gql";
+import { getName } from "../../utilities/functions";
 
 const Wrapper = styled.div`
   height: 10px;
@@ -19,6 +21,21 @@ interface Props {
   end: number;
 }
 
+const fragment = gql(/* GraphQL */ `
+  fragment FractionsForTimeSlot on Fraction {
+    id
+    start
+    end
+    treatmentPlan {
+      patient {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`);
+
 export function TimeSlot({ start, end }: Props) {
   const id = useMemo(() => "droppable-" + Math.random(), []);
   const { active, isOver, setNodeRef } = useDroppable({
@@ -27,18 +44,25 @@ export function TimeSlot({ start, end }: Props) {
 
   const fractions = useContext(FractionContext);
 
-  const fraction = fractions.find(
-    (fraction) => start < fraction.start && fraction.start < end
-  );
+  const data = fractions
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    .map((fraction) => useFragment(fragment, fraction));
+  // console.log(fractions);
+  const fraction = data.find((fraction) => {
+    return start < fraction.start && fraction.start < end;
+  });
 
   return (
     <Wrapper ref={setNodeRef}>
       {isOver && active?.data.current && (
-        <DroppedCard patient={active.data.current as { id: string }} />
+        <DroppedCard id={active.data.current.id} name="" />
       )}
       {fraction && (
         <CardWrapper>
-          <DroppedCard patient={{ id: fraction?.machine?.name ?? "" }} />
+          <DroppedCard
+            id={fraction.treatmentPlan.patient.id}
+            name={getName(fraction.treatmentPlan.patient)}
+          />
         </CardWrapper>
       )}
     </Wrapper>
