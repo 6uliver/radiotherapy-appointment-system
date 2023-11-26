@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
 import { Region } from "../../gql/graphql";
+import { format } from "date-fns";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 15em);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 0px;
@@ -37,11 +38,10 @@ const Section = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 5px;
-`;
-
-const Text = styled.p`
   font-size: 14px;
 `;
+
+const Text = styled.p``;
 
 const fragment = gql(/* GraphQL */ `
   fragment TreatmentPlanForResultElement on TreatmentPlan {
@@ -51,6 +51,7 @@ const fragment = gql(/* GraphQL */ `
     region
     patient {
       id
+      dateOfBirth
       firstName
       lastName
       ssn
@@ -83,6 +84,10 @@ export function ResultElement({ treatmentPlan }: Props) {
   const treatmentPlanFragment = useFragment(fragment, treatmentPlan);
 
   const formattedRegion = formatRegion(treatmentPlanFragment.region);
+  const convertedDateOfBirth = format(
+    treatmentPlanFragment.patient.dateOfBirth,
+    "PP"
+  );
 
   return (
     <Container>
@@ -96,6 +101,10 @@ export function ResultElement({ treatmentPlan }: Props) {
       <Section>
         <Title>SSN Number</Title>
         <Text>{`${treatmentPlanFragment.patient.ssn} `}</Text>
+      </Section>
+      <Section>
+        <Title>Date of Birth</Title>
+        <Text>{`${convertedDateOfBirth} `}</Text>
       </Section>
       <Section>
         <Title>Region</Title>

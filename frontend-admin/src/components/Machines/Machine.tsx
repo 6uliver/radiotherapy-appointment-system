@@ -37,6 +37,7 @@ const Section = styled.div`
 
 const Title = styled.h1`
   margin-bottom: 5px;
+  font-size: 14px;
 `;
 
 const StatusContainer = styled.div`
@@ -51,9 +52,7 @@ const StatusContainer = styled.div`
   }
 `;
 
-const Text = styled.p`
-  font-size: 14px;
-`;
+const Text = styled.p``;
 
 const fragment = gql(/* GraphQL */ `
   fragment MachineforMachines on Machine {
