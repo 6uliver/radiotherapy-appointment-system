@@ -40,6 +40,7 @@ const Section = styled.div`
 const Title = styled.h1`
   margin-bottom: 5px;
   font-size: 14px;
+  color: #282828;
 `;
 
 const Text = styled.p``;

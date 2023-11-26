@@ -11,8 +11,6 @@ import { Settings } from "./components/Settings";
 import { Home } from "./components/Home";
 import { TreatmentPlans } from "./components/Treatment Plans/TreatmentPlans";
 import { Machines } from "./components/Machines/Machines";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -34,20 +32,18 @@ export function App() {
   return (
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <DndProvider backend={HTML5Backend}>
-          <PageWrapper>
-            <Routes>
-              <Route path="/" element={<Navigation />}>
-                <Route index element={<Home />} />
-                <Route path="scheduler" element={<Scheduler />} />
-                <Route path="treatment-plans" element={<TreatmentPlans />} />
-                <Route path="machines" element={<Machines />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="settings" element={<Settings />} />
-              </Route>
-            </Routes>
-          </PageWrapper>
-        </DndProvider>
+        <PageWrapper>
+          <Routes>
+            <Route path="/" element={<Navigation />}>
+              <Route index element={<Home />} />
+              <Route path="scheduler" element={<Scheduler />} />
+              <Route path="treatment-plans" element={<TreatmentPlans />} />
+              <Route path="machines" element={<Machines />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+          </Routes>
+        </PageWrapper>
       </ApolloProvider>
     </BrowserRouter>
   );
