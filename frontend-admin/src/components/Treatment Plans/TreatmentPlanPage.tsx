@@ -11,6 +11,7 @@ import {
   formatSSN,
   getTpn,
 } from "../../utilities/functions";
+import { Fraction } from "./Fraction";
 
 const Container = styled.div`
   display: flex;
@@ -45,18 +46,9 @@ const treatmentPlan = gql(`
       id
       region
       fractionCount
-      constraints {
-        inpatient
-        breathHolding
-        largeBodied
-        kvImaging
-      }
       fractions {
-        start
-        end
-        machine {
-          name
-        }
+        id
+        ...FractionForFractions
       }
       patient {
         id
@@ -66,6 +58,13 @@ const treatmentPlan = gql(`
         ssn
         email
         phone
+      }
+      constraints {
+        transport
+        inpatient
+        breathHolding
+        largeBodied
+        kvImaging
       }
     }
   }
@@ -91,7 +90,8 @@ export function TreatmentPlanPage() {
     constraints,
   } = treatmentPlanQuery.data.treatmentPlanById;
   const { firstName, lastName, dateOfBirth, ssn, email, phone } = patient;
-  const { inpatient, largeBodied, breathHolding, kvImaging } = constraints;
+  const { transport, inpatient, largeBodied, breathHolding, kvImaging } =
+    constraints;
   const fullName = `${firstName} ${lastName}`;
   const title = `${getTpn(uid)} : ${fullName}`;
 
@@ -100,20 +100,20 @@ export function TreatmentPlanPage() {
       <Container>
         <Section>
           <Parameter>
-            <Title>TPN</Title>
-            <Value>{getTpn(uid)}</Value>
-          </Parameter>
-          <Parameter>
-            <Title>SSN</Title>
-            <Value>{formatSSN(ssn)}</Value>
-          </Parameter>
-          <Parameter>
             <Title>Name</Title>
             <Value>{fullName}</Value>
           </Parameter>
           <Parameter>
             <Title>Date of birth</Title>
             <Value>{format(dateOfBirth, "PP")}</Value>
+          </Parameter>
+          <Parameter>
+            <Title>TPN</Title>
+            <Value>{getTpn(uid)}</Value>
+          </Parameter>
+          <Parameter>
+            <Title>SSN</Title>
+            <Value>{formatSSN(ssn)}</Value>
           </Parameter>
           <Parameter>
             <Title>Email</Title>
@@ -129,7 +129,7 @@ export function TreatmentPlanPage() {
           </Parameter>
           <Parameter>
             <Title>Transport</Title>
-            <Value>Yes</Value>
+            <Value>{formatBoolean(transport)}</Value>
           </Parameter>
           <Parameter>
             <Title>Inpatient</Title>
@@ -150,7 +150,12 @@ export function TreatmentPlanPage() {
           <Title>Comments</Title>
           <Value></Value>
         </Section>
-        <Section></Section>
+        <Section>
+          <h1>{fractionCount} appointments</h1>
+          {fractions.map((fraction) => (
+            <Fraction fraction={fraction} key={fraction.id} />
+          ))}
+        </Section>
       </Container>
     </PageBase>
   );
