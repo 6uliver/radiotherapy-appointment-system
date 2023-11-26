@@ -15,4 +15,8 @@ export class MachineService {
   getMachineById(id: string) {
     return this.machineRepository.findOneBy({ id });
   }
+
+  getMachine(id: string) {
+    return this.machineRepository.findOneBy({ id });
+  }
 }
