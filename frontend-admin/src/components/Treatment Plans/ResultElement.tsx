@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { OncoLightGreen, OncoWhite } from "../../theme";
 import { FragmentType, gql, useFragment } from "../../gql";
-import { Region } from "../../gql/graphql";
 import { format } from "date-fns";
 import { Constraints } from "./Constraints";
 import { useNavigate } from "react-router-dom";
+import { formatRegion, formatSSN } from "../../utilities/functions";
 
 const Container = styled.div`
   display: grid;
@@ -68,23 +68,6 @@ const fragment = gql(/* GraphQL */ `
   }
 `);
 
-const regionNames: Record<Region, string> = {
-  ABDOMEN: "Abdomen",
-  BREAST: "Breast",
-  BREASTSPECIAL: "Breat special",
-  CRANE: "Crane",
-  CRANIOSPINAL: "Craniospinal",
-  HEAD: "Head & neck",
-  LUNG: "Lung",
-  LUNGSPECIAL: "Lung special",
-  PELVIS: "Pelvis",
-  WHOLEBRAIN: "Whole brain",
-};
-
-function formatRegion(region: Region) {
-  return regionNames[region];
-}
-
 interface Props {
   treatmentPlan: FragmentType<typeof fragment>;
 }
@@ -97,6 +80,7 @@ export function ResultElement({ treatmentPlan }: Props) {
   const { dateOfBirth, firstName, lastName, ssn } = patient;
 
   const formattedRegion = formatRegion(region);
+  const formattedSSN = formatSSN(ssn);
   const convertedDateOfBirth = format(dateOfBirth, "PP");
 
   return (
@@ -109,7 +93,7 @@ export function ResultElement({ treatmentPlan }: Props) {
       </Section>
       <Section>
         <Title>SSN Number</Title>
-        <Text>{`${ssn} `}</Text>
+        <Text>{formattedSSN}</Text>
       </Section>
       <Section>
         <Title>Date of Birth</Title>
