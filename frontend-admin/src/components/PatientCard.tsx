@@ -44,9 +44,9 @@ export function PatientCard() {
       </Patient>
       <div>
         <Icons>
-          <FaBed title="inpatient" />
-          <GiFat title="large-bodied" />
-          <FaLungs title="breath-holding" />
+          <FaBed title="Inpatient" />
+          <GiFat title="Large bodied" />
+          <FaLungs title="Breath holding" />
           <BiSolidImageAdd title="kV imaging" />
         </Icons>
       </div>
