@@ -27,4 +27,12 @@ export class Patient {
   @Field()
   @Column()
   ssn: string;
+
+  @Field({ nullable: true })
+  @Column()
+  phone: string;
+
+  @Field({ nullable: true })
+  @Column()
+  email: string;
 }
